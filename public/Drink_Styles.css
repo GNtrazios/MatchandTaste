@@ -1,0 +1,85 @@
+/* Apply styles to the body to make sure the background image covers the entire page */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the container with the background image */
+.background {
+    background-image: url('images/Cocktail.jpeg'); /* Path to your image */
+    background-size: cover; /* Make sure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    height: 100vh; /* Make sure the container takes up the full height of the viewport */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    color: white; /* Change text color to be visible on the background */
+    text-align: center; /* Center text */
+}
+
+.box {
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 80% opacity */
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.question {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 40px; /* Adjust margin to space out from buttons */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: rgb(233, 149, 128); 
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px 0;
+    width: 60%;
+}
+
+button:hover {
+    background-color: #f6b4b4;
+}
+
+button:disabled {
+    background-color: #ccc; /* Grey background for disabled button */
+    color: #666; /* Grey text color for disabled button */
+    cursor: not-allowed; /* Change cursor to indicate the button is not clickable */
+    border: 1px solid #aaa; /* Optional: grey border for disabled button */
+}
+
+button.home-button {
+    background-color: #808080; /* Grey background color */
+    color: white; /* White text color for contrast */
+    padding: 15px; /* Increase padding for a bigger button */
+    font-size: 18px; /* Increase font size */
+    width: 100%; /* Increase width */
+}
+
+button.home-button:hover {
+    background-color: #a9a9a9; /* Lighter grey on hover */
+}
