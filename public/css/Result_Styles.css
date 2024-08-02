@@ -9,7 +9,7 @@ body, html {
 
 /* Style the container with the background image */
 .background {
-    background-image: url('images/Cocktail.jpeg'); /* Path to your image */
+    background-image: url('../images/Cocktail.jpeg'); /* Path to your image */
     background-size: cover; /* Make sure the image covers the entire container */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent repeating the image */

@@ -9,45 +9,46 @@ body, html {
 
 /* Style the container with the background image */
 .background {
-    background-image: url('images/Cocktail.jpeg'); /* Path to your image */
-    background-size: cover; /* Make sure the image covers the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent repeating the image */
-    height: 100vh; /* Make sure the container takes up the full height of the viewport */
+    background-image: url('../images/Cocktail.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    color: white; /* Change text color to be visible on the background */
-    text-align: center; /* Center text */
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
 }
 
 .box {
-    background-color: rgba(0, 0, 0, 0.7); /* Black with 80% opacity */
+    background-color: rgba(0, 0, 0, 0.7);
     border: 2px solid #ccc;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
-    height: 250px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    transition: height 0.3s;
 }
 
 .question {
     color: white;
     font-size: 30px;
-    margin-bottom: 40px; /* Adjust margin to space out from buttons */
+    margin-bottom: 25px;
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center buttons horizontally */
+    align-items: center;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 button {

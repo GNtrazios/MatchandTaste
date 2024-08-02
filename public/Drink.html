@@ -4,64 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match 'n' Taste</title>
-    <link rel="stylesheet" href="Drink_Styles.css">
-    <script>
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            const flavorParam = params.get('flavor');
-            const drinksParam = params.get('drinks');
-            return {
-                drinks: drinksParam ? drinksParam.split(',') : [],
-                flavor: flavorParam
-            };
-        }
-
-        function handleButtonClick(drink) {
-            const queryParams = getQueryParams();
-            const flavor = queryParams.flavor;
-            const newURL = `Result.html?flavor=${encodeURIComponent(flavor)}&drink=${encodeURIComponent(drink)}`;
-            window.location.href = newURL;
-        }
-
-        window.onload = function() {
-            const queryParams = getQueryParams();
-            const drinksToDisable = queryParams.drinks;
-
-            // Get all button elements
-            const buttons = document.querySelectorAll('.button-container button');
-
-            buttons.forEach(button => {
-                // Add onclick event for each button
-                button.onclick = function() {
-                    handleButtonClick(button.textContent.trim());
-                };
-
-                if (drinksToDisable.includes(button.textContent)) {
-                    button.disabled = true; // Make the button unclickable
-                    button.style.cursor = 'not-allowed'; // Optional: change cursor style
-                    button.classList.add('disabled'); // Optional: add a class for styling
-                }
-            });
-        }
-    </script>
+    <link rel="stylesheet" href="css/Drink_Styles.css">
 </head>
 <body>
     <div class="background">
         <div class="box">
             <p class="question">What do you prefer...</p>
-            <div class="button-container">
-                <button class="FlavorXDrinkButton">Whiskey</button>
-                <button class="FlavorXDrinkButton">Tequila</button>
-                <button class="FlavorXDrinkButton">Vodka</button>
-                <button class="FlavorXDrinkButton">Rum</button>
-                <button class="FlavorXDrinkButton">Gin</button>
-            </div>
-            <div class="button-container">
+            <div id="drink-buttons-container" class="button-container"></div>
+            <div class="home-button-container">
                 <a href="index.html">
                     <button class="home-button">Home</button>
                 </a>
             </div>
         </div>
     </div>
+    <script src="js/Drink_script.js"></script>
 </body>
 </html>
