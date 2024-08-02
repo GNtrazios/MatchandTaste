@@ -30,14 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         // Filter cocktails by drink type
                         const drinkCocktails = filteredCocktails.filter(cocktail => cocktail.drink === drink);
 
-                        // Display the filtered cocktails
-                        const cocktailList = document.getElementById('cocktail-list');
-                        cocktailList.innerHTML = ''; // Clear existing list
-                        drinkCocktails.forEach(cocktail => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = `${cocktail.name} - ${cocktail.description}`;
-                            cocktailList.appendChild(listItem);
-                        });
+                        // Assuming there's only one cocktail per drink type, 
+                        // redirect to the Result.html page with the cocktail's name as a query parameter
+                        if (drinkCocktails.length > 0) {
+                            const selectedCocktail = drinkCocktails[0];
+                            window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
+                        }
                     });
                 });
             })
@@ -51,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to adjust the height of the box
     function adjustBoxHeight() {
         const baseHeight = 200; // Base height in pixels (adjust as necessary)
-        const buttonHeight = 50; // Approximate height per button (including padding and margin)
+        const buttonHeight = 40; // Approximate height per button (including padding and margin)
         const numButtons = drinkButtonsContainer.children.length;
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
