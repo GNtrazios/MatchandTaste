@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Add event listener to flavor button
                 flavorButton.addEventListener('click', () => {
                     // Redirect to the new page with the selected flavor
-                    window.location.href = `drink.html?flavor=${flavor}`;
+                    window.location.href = `Drink.html?flavor=${flavor}`;
                 });
             });
         })
