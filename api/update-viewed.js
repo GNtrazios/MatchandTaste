@@ -9,7 +9,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'No cocktail name provided in the request body.' });
         }
 
-        const dataPath = process.env.DATA_PATH || path.join(process.cwd(), 'data.json');
+        const dataPath = process.env.DATA_PATH || path.join('../public/data.json');
 
         console.log(`Data path being used: ${dataPath}`);
 
