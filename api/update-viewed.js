@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     // Find the selected cocktail and update the viewed status
     const selectedCocktail = jsonData.find(cocktail => cocktail.name === name);
     if (selectedCocktail) {
-      selectedCocktail.viewed = true; // Update viewed status or other properties as needed
+        selectedCocktail.Viewed += 1;
     } else {
       return res.status(404).json({ error: 'Cocktail not found' });
     }
