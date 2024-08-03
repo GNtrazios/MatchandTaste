@@ -25,21 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 cocktailName.textContent = selectedCocktail.name;
                 cocktailDescription.textContent = selectedCocktail.description;
 
-                // Send an update to the server to increment the viewed count
-                fetch('/update-viewed', {
+                // Update the Viewed status using the serverless function
+                fetch('/api/update-viewed', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ name: selectedCocktailName })
                 })
                 .then(response => response.json())
-                .then(data => {
-                    if (!data.success) {
-                        console.error('Failed to update viewed count:', data.error);
-                    }
-                })
-                .catch(error => console.error('Error updating viewed count:', error));
+                .then(result => console.log(result.message))
+                .catch(error => console.error('Error updating viewed status:', error));
             } else {
                 alert('Cocktail not found!');
             }
