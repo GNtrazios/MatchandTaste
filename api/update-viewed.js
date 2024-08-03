@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         try {
             // Check if the file exists
             if (!fs.existsSync(dataPath)) {
+                console.log(`This is the filepath ${dataPath}`);
                 return res.status(404).json({ error: `File not found at path: ${dataPath}` });
             }
 
