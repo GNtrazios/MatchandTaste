@@ -13,6 +13,12 @@ export default async function handler(req, res) {
         const currentDir = process.cwd();
         console.log(`Current working directory: ${currentDir}`);
 
+        // List available directories from currentDir
+        const directories = fs.readdirSync(currentDir, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+        console.log('Available directories:', directories);
+
         // Construct the path to the data.json file
         const dataPath = process.env.DATA_PATH || path.join(currentDir, 'public', 'data.json');
         console.log(`Data path being used: ${dataPath}`);
