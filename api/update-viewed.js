@@ -1,63 +1,53 @@
-import fs from 'fs';
-import path from 'path';
+// api/update-viewed.js
+const { Octokit } = require("@octokit/rest");
 
 export default async function handler(req, res) {
-    if (req.method === 'POST') {
-        const { name } = req.body;
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_PAT, // Use environment variable for token
+  });
 
-        if (!name) {
-            return res.status(400).json({ error: 'No cocktail name provided in the request body.' });
-        }
+  const owner = 'gntrazios'; // Replace with your GitHub username
+  const repo = 'MatchandTaste'; // Replace with your repository name
+  const path = 'public/data.json'; // Path to the file in the repository
+  const message = 'Updating viewed status'; // Commit message
+  const { name } = req.body; // Extracting cocktail name from request body
 
-        // Get the current working directory
-        const currentDir = process.cwd();
-        console.log(`Current working directory: ${currentDir}`);
+  try {
+    // Fetch the current file content
+    const { data: fileData } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path,
+    });
 
-        // List available directories from currentDir
-        const directories = fs.readdirSync(currentDir, { withFileTypes: true })
-            .filter(dirent => dirent.isDirectory())
-            .map(dirent => dirent.name);
-        console.log('Available directories:', directories);
+    const sha = fileData.sha;
+    const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
+    const jsonData = JSON.parse(content);
 
-        // Construct the path to the data.json file
-        const dataPath = process.env.DATA_PATH || path.join(currentDir, 'public', 'data.json');
-        console.log(`Data path being used: ${dataPath}`);
-
-        try {
-            // Check if the file exists
-            if (!fs.existsSync(dataPath)) {
-                console.log(`File not found at path: ${dataPath}`);
-                return res.status(404).json({ error: `File not found at path: ${dataPath}` });
-            }
-
-            // Read and parse the JSON data
-            const fileContent = fs.readFileSync(dataPath, 'utf8');
-            const data = JSON.parse(fileContent);
-
-            // Find the cocktail and update its "Viewed" property
-            const cocktail = data.find(c => c.name === name);
-            if (cocktail) {
-                cocktail.Viewed = 1;
-                fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-                res.status(200).json({ message: 'Viewed status updated successfully.' });
-            } else {
-                res.status(404).json({ error: `Cocktail with name "${name}" not found in the data.` });
-            }
-        } catch (error) {
-            console.error('Error occurred:', error);
-            if (error.code === 'ENOENT') {
-                // Specific error for file not found
-                res.status(500).json({ error: `File not found or unable to read file at path: ${dataPath}` });
-            } else if (error.name === 'SyntaxError') {
-                // Specific error for JSON parsing issues
-                res.status(500).json({ error: `Error parsing JSON from file at path: ${dataPath}`, details: error.message });
-            } else {
-                // Generic error
-                res.status(500).json({ error: 'Unexpected error occurred while processing the request.', details: error.message });
-            }
-        }
+    // Find the selected cocktail and update the viewed status
+    const selectedCocktail = jsonData.find(cocktail => cocktail.name === name);
+    if (selectedCocktail) {
+      selectedCocktail.viewed = true; // Update viewed status or other properties as needed
     } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed. Please use POST method.`);
+      return res.status(404).json({ error: 'Cocktail not found' });
     }
+
+    // Convert updated data to base64
+    const updatedContent = Buffer.from(JSON.stringify(jsonData)).toString('base64');
+
+    // Update the file content on GitHub
+    await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path,
+      message,
+      content: updatedContent,
+      sha, // Required to update existing file
+    });
+
+    res.status(200).json({ message: 'File updated successfully.' });
+  } catch (error) {
+    console.error('Error updating file:', error.message); // Log specific error message
+    res.status(500).json({ error: 'Failed to update file.' });
+  }
 }
