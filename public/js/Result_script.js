@@ -24,6 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 cocktailImage.alt = selectedCocktail.name;
                 cocktailName.textContent = selectedCocktail.name;
                 cocktailDescription.textContent = selectedCocktail.description;
+
+                // Send an update to the server to increment the viewed count
+                fetch('/update-viewed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: selectedCocktailName })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error('Failed to update viewed count:', data.error);
+                    }
+                })
+                .catch(error => console.error('Error updating viewed count:', error));
             } else {
                 alert('Cocktail not found!');
             }
