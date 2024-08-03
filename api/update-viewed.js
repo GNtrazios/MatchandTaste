@@ -9,14 +9,18 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'No cocktail name provided in the request body.' });
         }
 
-        const dataPath = process.env.DATA_PATH || path.join('../public/data.json');
+        // Get the current working directory
+        const currentDir = process.cwd();
+        console.log(`Current working directory: ${currentDir}`);
 
+        // Construct the path to the data.json file
+        const dataPath = process.env.DATA_PATH || path.join(currentDir, 'public', 'data.json');
         console.log(`Data path being used: ${dataPath}`);
 
         try {
             // Check if the file exists
             if (!fs.existsSync(dataPath)) {
-                console.log(`This is the filepath ${dataPath}`);
+                console.log(`File not found at path: ${dataPath}`);
                 return res.status(404).json({ error: `File not found at path: ${dataPath}` });
             }
 
