@@ -21,16 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (drinkCocktails.length > 0) {
                         // Find the cocktail with the minimum "Viewed" value
-                        //let selectedCocktail = drinkCocktails[0];
-                        //drinkCocktails.forEach(cocktail => {
-                        //    if (cocktail.Viewed < selectedCocktail.Viewed) {
-                        //        selectedCocktail = cocktail;
-                        //    }
-                        //});
-
-                        // Select a random cocktail from the list
-                        const randomIndex = Math.floor(Math.random() * drinkCocktails.length);
-                        const selectedCocktail = drinkCocktails[randomIndex];
+                        let selectedCocktail = drinkCocktails[0];
+                        drinkCocktails.forEach(cocktail => {
+                            if (cocktail.Viewed < selectedCocktail.Viewed) {
+                                selectedCocktail = cocktail;
+                            }
+                        });
 
                         window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
                     }
@@ -52,12 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             const drinkCocktails = filteredCocktails.filter(cocktail => cocktail.drink === drink);
 
                             // Find the cocktail with the minimum "Viewed" value
-                            let selectedCocktail = drinkCocktails[0];
-                            drinkCocktails.forEach(cocktail => {
-                                if (cocktail.Viewed < selectedCocktail.Viewed) {
-                                    selectedCocktail = cocktail;
-                                }
-                            });
+                            //let selectedCocktail = drinkCocktails[0];
+                            //drinkCocktails.forEach(cocktail => {
+                            //    if (cocktail.Viewed < selectedCocktail.Viewed) {
+                            //        selectedCocktail = cocktail;
+                            //    }
+                            //});
+
+                            // Select a random cocktail from the list
+                            const randomIndex = Math.floor(Math.random() * drinkCocktails.length);
+                            const selectedCocktail = drinkCocktails[randomIndex];    
 
                             window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
                         });
