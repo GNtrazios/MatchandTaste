@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           cocktailDescription.textContent = selectedCocktail.description;
   
           // Update the Viewed status using the serverless function
+          /*
           fetch('/api/update-viewed', {
             method: 'POST',
             headers: {
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .catch(error => console.error('Error updating viewed status:', error));
         } else {
           alert('Cocktail not found!');
+        */
         }
       })
       .catch(error => console.error('Error fetching data:', error));
