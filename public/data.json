@@ -1,56 +1,56 @@
 [
     {
-      "Name": "Mai Tai",
-      "Flavor": "Sweet",
-      "Drink": "Rum",
-      "Description": "A tropical drink with rum and orgeat syrup."
+      "name": "Mai Tai",
+      "flavor": "Sweet",
+      "drink": "Rum",
+      "description": "A tropical drink with rum and orgeat syrup."
     },
     {
-      "Name": "Pina Colada",
-      "Flavor": "Sweet",
-      "Drink": "Rum",
-      "Description": "A creamy tropical cocktail with rum, coconut cream, and pineapple juice."
+      "name": "Pina Colada",
+      "flavor": "Sweet",
+      "drink": "Rum",
+      "description": "A creamy tropical cocktail with rum, coconut cream, and pineapple juice."
     },
     {
-      "Name": "Cosmopolitan",
-      "Flavor": "Sweet",
-      "Drink": "Vodka",
-      "Description": "A sweet and tart cocktail with cranberry juice."
+      "name": "Cosmopolitan",
+      "flavor": "Sweet",
+      "drink": "Vodka",
+      "description": "A sweet and tart cocktail with cranberry juice."
     },
     {
-      "Name": "Margarita",
-      "Flavor": "Sour",
-      "Drink": "Tequila",
-      "Description": "A tangy cocktail with lime and orange liqueur."
+      "name": "Margarita",
+      "flavor": "Sour",
+      "drink": "Tequila",
+      "description": "A tangy cocktail with lime and orange liqueur."
     },
     {
-      "Name": "Negroni",
-      "Flavor": "Bitter",
-      "Drink": "Gin",
-      "Description": "A bitter cocktail with gin, Campari, and vermouth."
+      "name": "Negroni",
+      "flavor": "Bitter",
+      "drink": "Gin",
+      "description": "A bitter cocktail with gin, Campari, and vermouth."
     },
     {
-      "Name": "Boulevardier",
-      "Flavor": "Bitter",
-      "Drink": "Whiskey",
-      "Description": "A whiskey-based cocktail with Campari and vermouth."
+      "name": "Boulevardier",
+      "flavor": "Bitter",
+      "drink": "Whiskey",
+      "description": "A whiskey-based cocktail with Campari and vermouth."
     },
     {
-      "Name": "Old Fashioned",
-      "Flavor": "Bitter",
-      "Drink": "Whiskey",
-      "Description": "A classic cocktail with whiskey, bitters, sugar, and a twist of citrus."
+      "name": "Old Fashioned",
+      "flavor": "Bitter",
+      "drink": "Whiskey",
+      "description": "A classic cocktail with whiskey, bitters, sugar, and a twist of citrus."
     },
     {
-      "Name": "Tom Collins",
-      "Flavor": "Sweet",
-      "Drink": "Gin",
-      "Description": "A refreshing cocktail with gin, lemon juice, sugar, and soda water."
+      "name": "Tom Collins",
+      "flavor": "Sweet",
+      "drink": "Gin",
+      "description": "A refreshing cocktail with gin, lemon juice, sugar, and soda water."
     },
     {
-      "Name": "Bloody Mary",
-      "Flavor": "Savory",
-      "Drink": "Vodka",
-      "Description": "A savory cocktail with vodka, tomato juice, and various spices."
+      "name": "Bloody Mary",
+      "flavor": "Savory",
+      "drink": "Vodka",
+      "description": "A savory cocktail with vodka, tomato juice, and various spices."
     }
   ]  
