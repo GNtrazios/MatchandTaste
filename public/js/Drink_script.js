@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to adjust the height of the box
     function adjustBoxHeight() {
-        const baseHeight = 200; // Base height in pixels (adjust as necessary)
+        const baseHeight = 175; // Base height in pixels (adjust as necessary)
         const buttonHeight = 40; // Approximate height per button (including padding and margin)
         const numButtons = drinkButtonsContainer.children.length;
         const newHeight = baseHeight + (numButtons * buttonHeight);
