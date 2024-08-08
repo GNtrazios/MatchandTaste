@@ -30,22 +30,10 @@
       "description": "A bitter cocktail with gin, Campari, and vermouth."
     },
     {
-      "name": "Boulevardier",
-      "flavor": "Bitter",
-      "drink": "Whiskey",
-      "description": "A whiskey-based cocktail with Campari and vermouth."
-    },
-    {
       "name": "Old Fashioned",
       "flavor": "Bitter",
       "drink": "Whiskey",
       "description": "A classic cocktail with whiskey, bitters, sugar, and a twist of citrus."
-    },
-    {
-      "name": "Tom Collins",
-      "flavor": "Sweet",
-      "drink": "Gin",
-      "description": "A refreshing cocktail with gin, lemon juice, sugar, and soda water."
     },
     {
       "name": "Bloody Mary",
