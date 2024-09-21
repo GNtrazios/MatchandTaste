@@ -47,14 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             // Filter cocktails by drink type
                             const drinkCocktails = filteredCocktails.filter(cocktail => cocktail.drink === drink);
 
-                            // Find the cocktail with the minimum "Viewed" value
-                            //let selectedCocktail = drinkCocktails[0];
-                            //drinkCocktails.forEach(cocktail => {
-                            //    if (cocktail.Viewed < selectedCocktail.Viewed) {
-                            //        selectedCocktail = cocktail;
-                            //    }
-                            //});
-
                             // Select a random cocktail from the list
                             const randomIndex = Math.floor(Math.random() * drinkCocktails.length);
                             const selectedCocktail = drinkCocktails[randomIndex];    
