@@ -18,18 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Only one drink available, simulate the button click
                     const drink = distinctDrinks[0];
                     const drinkCocktails = filteredCocktails.filter(cocktail => cocktail.drink === drink);
+                    const selectedCocktail = drinkCocktails[0];    
 
-                    if (drinkCocktails.length > 0) {
-                        // Find the cocktail with the minimum "Viewed" value
-                        let selectedCocktail = drinkCocktails[0];
-                        drinkCocktails.forEach(cocktail => {
-                            if (cocktail.Viewed < selectedCocktail.Viewed) {
-                                selectedCocktail = cocktail;
-                            }
-                        });
-
-                        window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
-                    }
+                    window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
                 } else {
                     // Create buttons for each distinct drink
                     distinctDrinks.forEach(drink => {
