@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Add event listener to adventure button
                 adventureButton.addEventListener('click', () => {
                     // Redirect to the new page with the selected adventure level
-                    window.location.href = `Drink.html?adventure=${adventure}`;
+                    window.location.href = `NextPage.html?adventure=${adventure}`;
                 });
             });
         })
