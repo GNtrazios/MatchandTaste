@@ -42,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             const randomIndex = Math.floor(Math.random() * drinkCocktails.length);
                             const selectedCocktail = drinkCocktails[randomIndex];    
 
-                            window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
+                            // window.location.href = `Result.html?name=${encodeURIComponent(selectedCocktail.name)}`;
+                            window.location.href = `Dummy.html?parameter1=${encodeURIComponent(selectedCocktail.name)}&parameter2=${encodeURIComponent(selectedCocktail.name)}`;
                         });
                     });
                 }

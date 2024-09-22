@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const flavorButtonsContainer = document.getElementById('flavor-buttons-container');
     const boxElement = document.querySelector('.box');
 
-    fetch('data.json')
+    fetch('Officialdata.json')
         .then(response => response.json())
         .then(data => {
             // Get distinct flavors from the JSON data
