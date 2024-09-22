@@ -1,28 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const flavorButtonsContainer = document.getElementById('flavor-buttons-container');
+    const adventureButtonsContainer = document.getElementById('adventure-buttons-container');
     const boxElement = document.querySelector('.box');
 
     fetch('Officialdata.json')
         .then(response => response.json())
         .then(data => {
-            // Get distinct flavors from the JSON data
-            const distinctFlavors = [...new Set(data.map(cocktail => cocktail.flavor))];
+            // Get distinct adventure levels from the JSON data
+            const distinctAdventures = [...new Set(data.map(cocktail => cocktail["How adventurous are you feeling tonight?"]))];
 
-            // Create buttons for each distinct flavor
-            distinctFlavors.forEach(flavor => {
-                const flavorButton = document.createElement('button');
-                flavorButton.textContent = flavor;
-                flavorButton.className = 'flavor-btn';
-                flavorButton.setAttribute('data-flavor', flavor);
-                flavorButtonsContainer.appendChild(flavorButton);
+            // Create buttons for each distinct adventure level
+            distinctAdventures.forEach(adventure => {
+                const adventureButton = document.createElement('button');
+                adventureButton.textContent = adventure;
+                adventureButton.className = 'adventure-btn';
+                adventureButton.setAttribute('data-adventure', adventure);
+                adventureButtonsContainer.appendChild(adventureButton);
 
                 // Adjust the height of the box based on the number of buttons
                 adjustBoxHeight();
 
-                // Add event listener to flavor button
-                flavorButton.addEventListener('click', () => {
-                    // Redirect to the new page with the selected flavor
-                    window.location.href = `Drink.html?flavor=${flavor}`;
+                // Add event listener to adventure button
+                adventureButton.addEventListener('click', () => {
+                    // Redirect to the new page with the selected adventure level
+                    window.location.href = `Drink.html?adventure=${adventure}`;
                 });
             });
         })
@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function adjustBoxHeight() {
         // Calculate new height based on the number of buttons
-        const numButtons = flavorButtonsContainer.children.length;
-        const baseHeight = 100; // Base height in pixels
+        const numButtons = adventureButtonsContainer.children.length;
+        const baseHeight = 150; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
