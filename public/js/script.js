@@ -1,35 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const adventureButtonsContainer = document.getElementById('adventure-buttons-container');
+    const adventureButtonsContainer = document.getElementById('InitialPage-buttons-container');
     const boxElement = document.querySelector('.box');
 
     fetch('Officialdata.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
-            // Get distinct adventure levels from the JSON data
             const distinctAdventures = [...new Set(data.map(cocktail => cocktail["How adventurous are you feeling tonight?"]))];
-
-            // Create buttons for each distinct adventure level
-            distinctAdventures.forEach(adventure => {
-                const adventureButton = document.createElement('button');
-                adventureButton.textContent = adventure;
-                adventureButton.className = 'adventure-btn';
-                adventureButton.setAttribute('data-adventure', adventure);
-                adventureButtonsContainer.appendChild(adventureButton);
-
-                // Adjust the height of the box based on the number of buttons
-                adjustBoxHeight();
-
-                // Add event listener to adventure button
-                adventureButton.addEventListener('click', () => {
-                    // Redirect to the new page with the selected adventure level
-                    window.location.href = `NextPage.html?adventure=${adventure}`;
-                });
-            });
+            createAdventureButtons(distinctAdventures);
+            updateBoxHeight();
         })
         .catch(error => console.error('Error fetching data:', error));
 
-    function adjustBoxHeight() {
-        // Calculate new height based on the number of buttons
+    function createAdventureButtons(adventures) {
+        const fragment = document.createDocumentFragment();
+
+        adventures.forEach(adventure => {
+            const adventureButton = document.createElement('button');
+            adventureButton.textContent = adventure;
+            adventureButton.className = 'adventure-btn';
+            adventureButton.setAttribute('data-adventure', adventure);
+
+            adventureButton.addEventListener('click', () => {
+                window.location.href = `SecondPage.html?adventure=${adventure}`;
+            });
+
+            fragment.appendChild(adventureButton);
+        });
+
+        adventureButtonsContainer.appendChild(fragment);
+    }
+
+    function updateBoxHeight() {
         const numButtons = adventureButtonsContainer.children.length;
         const baseHeight = 150; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
