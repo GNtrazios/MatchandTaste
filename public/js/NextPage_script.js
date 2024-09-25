@@ -35,18 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Add event listener for the button
                 answerButton.addEventListener('click', () => {
                     // Redirect to the next question page with the selected answer
-                    window.location.href = `FinalPage.html?answer=${encodeURIComponent(answer)}`;
+                    window.location.href = `NextPage2.html?2=${encodeURIComponent(answer)}`;
                 });
             });
 
             // Adjust the box height based on the number of buttons created
-            adjustBoxHeight(possibleAnswers.length);
+            adjustBoxHeight();
         })
         .catch(error => console.error('Error fetching data:', error));
 
-    function adjustBoxHeight(numButtons) {
+    function adjustBoxHeight() {
         // Calculate new height based on the number of buttons
-        const baseHeight = 200; // Base height in pixels
+        const numButtons = nextQuestionButtonsContainer.children.length;
+        const baseHeight = 250; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
