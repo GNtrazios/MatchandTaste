@@ -9,10 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('Officialdata.json')
         .then(handleResponse)
         .then(data => {
-            const filteredData = filterDataByAdventure(data, selectedAdventure);
-            const thirdFieldName = getThirdFieldName(filteredData);
-            const possibleAnswers = getUniqueAnswers(filteredData, thirdFieldName);
-            updateQuestion(thirdFieldName);
+            const filteredData = data.filter(item => item["How adventurous are you feeling tonight?"] === selectedAdventure);
+            const thirdFieldName = Object.keys(filteredData[0] || {})[2];
+            const possibleAnswers = [...new Set(filteredData.map(item => item[thirdFieldName]))];
+
+            if (thirdFieldName) {
+                questionElement.textContent = thirdFieldName;
+            } else {
+                questionElement.textContent = `No third field available for "${selectedAdventure}".`;
+            }
+
             createAnswerButtons(possibleAnswers);
             adjustBoxHeight();
         })
@@ -23,26 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
-    }
-
-    function filterDataByAdventure(data, adventure) {
-        return data.filter(item => item["How adventurous are you feeling tonight?"] === adventure);
-    }
-
-    function getThirdFieldName(data) {
-        return Object.keys(data[0] || {})[2];
-    }
-
-    function getUniqueAnswers(data, fieldName) {
-        return [...new Set(data.map(item => item[fieldName]))];
-    }
-
-    function updateQuestion(fieldName) {
-        if (fieldName) {
-            questionElement.textContent = fieldName;
-        } else {
-            questionElement.textContent = `No third field available for "${selectedAdventure}".`;
-        }
     }
 
     function createAnswerButtons(answers) {
