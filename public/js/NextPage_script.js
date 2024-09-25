@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to fetch and process data
     function fetchAndProcessData() {
-        fetch('OfficialData.json')
+        fetch('Officialdata.json')
             .then(handleResponse)
             .then(data => processData(data))
             .catch(error => {
