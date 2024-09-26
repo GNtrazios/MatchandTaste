@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const adventureButtonsContainer = document.getElementById('InitialPage-buttons-container');
     const boxElement = document.querySelector('.box');
 
-    fetch('Officialdata.json')
+    fetch('OubiCocktails.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
-            const distinctAdventures = [...new Set(data.map(cocktail => cocktail["How adventurous are you feeling tonight?"]))];
+            const distinctAdventures = [...new Set(data.map(cocktail => cocktail["How do you prefer your cocktail to taste?"]))];
             createAdventureButtons(distinctAdventures);
             updateBoxHeight();
         })

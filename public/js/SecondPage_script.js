@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Get the selected adventure from the URL parameters
     const selectedAdventure = new URLSearchParams(window.location.search).get('adventure');
 
-    fetch('Officialdata.json')
+    fetch('OubiCocktails.json')
         .then(handleResponse)
         .then(data => {
-            const filteredData = data.filter(item => item["How adventurous are you feeling tonight?"] === selectedAdventure);
+            const filteredData = data.filter(item => item["How do you prefer your cocktail to taste?"] === selectedAdventure);
             const thirdFieldName = Object.keys(filteredData[0] || {})[2];
             const possibleAnswers = [...new Set(filteredData.map(item => item[thirdFieldName]))];
 

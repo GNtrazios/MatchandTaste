@@ -1,70 +1,70 @@
 [
   {
-    "Cocktail Name": "Bahama Mama",
+    "name": "Bahama Mama",
     "How do you prefer your cocktail to taste?": "Fruity and exotic",
     "Which fruit appeals to you more?": "Passion fruit with a tropical vibe"
   },
   {
-    "Cocktail Name": "Dragons Zombie",
+    "name": "Dragons Zombie",
     "How do you prefer your cocktail to taste?": "Fruity and exotic",
     "Which fruit appeals to you more?": "Dragon fruit with a hint of apricot"
   },
   {
-    "Cocktail Name": "Mango Tango",
+    "name": "Mango Tango",
     "How do you prefer your cocktail to taste?": "Fruity and exotic",
     "Which fruit appeals to you more?": "Mango with a tropical sweetness",
     "Do you prefer your mango with a tiki touch or a bit of citrus?": "Tiki-style with pineapple and caviar-like textures"
   },
   {
-    "Cocktail Name": "Caribbean Breeze",
+    "name": "Caribbean Breeze",
     "How do you prefer your cocktail to taste?": "Fruity and exotic",
     "Which fruit appeals to you more?": "Mango with a tropical sweetness",
     "Do you prefer your mango with a tiki touch or a bit of citrus?": "Citrusy with a sweet and sour edge"
   },
   {
-    "Cocktail Name": "The Gardener",
+    "name": "The Gardener",
     "How do you prefer your cocktail to taste?": "Refreshing and light",
     "What kind of refreshing note do you prefer?": "Cucumber and apple for a crisp, garden-fresh feel"
   },
   {
-    "Cocktail Name": "Watermelon Oasis",
+    "name": "Watermelon Oasis",
     "How do you prefer your cocktail to taste?": "Refreshing and light",
     "What kind of refreshing note do you prefer?": "Watermelon with a Mediterranean touch"
   },
   {
-    "Cocktail Name": "Fragolas Spritz",
+    "name": "Fragolas Spritz",
     "How do you prefer your cocktail to taste?": "Refreshing and light",
     "What kind of refreshing note do you prefer?": "Citrusy and effervescent with strawberry accents"
   },
   {
-    "Cocktail Name": "Sweet Amigo",
+    "name": "Sweet Amigo",
     "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
     "What kind of sweetness do you enjoy?": "Caramel with salted or nutty notes",
     "What combination of caramel and sweetness do you prefer?": "Salted caramel with citrus and almond"
   },
   {
-    "Cocktail Name": "Drunk Popcorn",
+    "name": "Drunk Popcorn",
     "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
     "What kind of sweetness do you enjoy?": "Caramel with salted or nutty notes",
     "What combination of caramel and sweetness do you prefer?": "Butterscotch with a popcorn twist and ginger"
   },
   {
-    "Cocktail Name": "The Elixir",
+    "name": "The Elixir",
     "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
     "What kind of sweetness do you enjoy?": "Fruity sweetness with vanilla or pear"
   },
   {
-    "Cocktail Name": "Spicy Columbus",
+    "name": "Spicy Columbus",
     "How do you prefer your cocktail to taste?": "Spicy and bold",
     "How intense do you like your spice?": "A balance of sweet, sour, and spicy with a fruity base"
   },
   {
-    "Cocktail Name": "Smokey Aperol",
+    "name": "Smokey Aperol",
     "How do you prefer your cocktail to taste?": "Smoky and bittersweet",
     "What do you want to complement the smokiness?": "Vanilla and bitters for a bittersweet balance"
   },
   {
-    "Cocktail Name": "Picasso",
+    "name": "Picasso",
     "How do you prefer your cocktail to taste?": "Smoky and bittersweet",
     "What do you want to complement the smokiness?": "A fruity, effervescent twist with peach and prosecco"
   }

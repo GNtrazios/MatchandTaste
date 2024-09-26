@@ -4,30 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const cocktailDescription = document.getElementById('cocktail-description');
 
   // Get the cocktail name from the query parameter
-  const selectedCocktailName = getSelectedCocktailName();
-
-  if (!selectedCocktailName) {
-      alert('No cocktail selected!');
-      return;
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedCocktailName = urlParams.get('name');
 
   fetchCocktailData(selectedCocktailName)
       .then(selectedCocktail => {
           if (selectedCocktail) {
-              updateCocktailUI(selectedCocktail);
+            updateCocktailUI(selectedCocktail);
           } else {
-              alert(`Cocktail "${selectedCocktailName}" not found!`);
+            alert(`Cocktail "${selectedCocktailName}" not found!`);
           }
       })
       .catch(error => console.error('Error fetching data:', error));
 
-  function getSelectedCocktailName() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('name');
-  }
-
   function fetchCocktailData(cocktailName) {
-      return fetch('data.json')
+      return fetch('OubiCocktails.json')
           .then(response => {
               if (!response.ok) {
                   throw new Error(`HTTP error! status: ${response.status}`);
