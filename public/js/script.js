@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const adventureButtonsContainer = document.getElementById('InitialPage-buttons-container');
+    const questionElement = document.querySelector('.question');
+    const InitialPageButtonsContainer = document.getElementById('InitialPage-buttons-container');
     const boxElement = document.querySelector('.box');
 
     fetch('OubiCocktails.json')
@@ -10,33 +11,37 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
-            const distinctAdventures = [...new Set(data.map(cocktail => cocktail["How do you prefer your cocktail to taste?"]))];
-            createAdventureButtons(distinctAdventures);
+            const FirstQuestion = Object.keys(data[0])[1];
+
+            const possibleAnswers = [...new Set(data.map(cocktail => cocktail[FirstQuestion]))];           
+            questionElement.textContent = FirstQuestion;
+
+            createAnswerButtons(possibleAnswers);
             updateBoxHeight();
         })
         .catch(error => console.error('Error fetching data:', error));
 
-    function createAdventureButtons(adventures) {
+    function createAnswerButtons(answers) {
         const fragment = document.createDocumentFragment();
 
-        adventures.forEach(adventure => {
-            const adventureButton = document.createElement('button');
-            adventureButton.textContent = adventure;
-            adventureButton.className = 'adventure-btn';
-            adventureButton.setAttribute('data-adventure', adventure);
+        answers.forEach(answer => {
+            const answerButton = document.createElement('button');
+            answerButton.textContent = answer;
+            answerButton.className = 'answer-btn';
+            answerButton.setAttribute('data-answer', answer);
 
-            adventureButton.addEventListener('click', () => {
-                window.location.href = `SecondPage.html?adventure=${adventure}`;
+            answerButton.addEventListener('click', () => {
+                window.location.href = `SecondPage.html?FirstQuestionAnswer=${answer}`;
             });
 
-            fragment.appendChild(adventureButton);
+            fragment.appendChild(answerButton);
         });
 
-        adventureButtonsContainer.appendChild(fragment);
+        InitialPageButtonsContainer.appendChild(fragment);
     }
 
     function updateBoxHeight() {
-        const numButtons = adventureButtonsContainer.children.length;
+        const numButtons = InitialPageButtonsContainer.children.length;
         const baseHeight = 150; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);

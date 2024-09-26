@@ -4,32 +4,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const boxElement = document.querySelector('.box');
 
     // Get the selected adventure from the URL parameters
-    const selectedAdventure = new URLSearchParams(window.location.search).get('adventure');
+    const FirstQuestionAnswer = new URLSearchParams(window.location.search).get('FirstQuestionAnswer');
 
     fetch('OubiCocktails.json')
-        .then(handleResponse)
-        .then(data => {
-            const filteredData = data.filter(item => item["How do you prefer your cocktail to taste?"] === selectedAdventure);
-            const thirdFieldName = Object.keys(filteredData[0] || {})[2];
-            const possibleAnswers = [...new Set(filteredData.map(item => item[thirdFieldName]))];
-
-            if (thirdFieldName) {
-                questionElement.textContent = thirdFieldName;
-            } else {
-                questionElement.textContent = `No third field available for "${selectedAdventure}".`;
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+            return response.json();
+        })
+        .then(data => {
+            const FirstQuestion = Object.keys(data[0])[1];
+            const filteredData = data.filter(item => item[FirstQuestion] === FirstQuestionAnswer);
+            
+            const NextQuestion = Object.keys(filteredData[0] || {})[2];
 
-            createAnswerButtons(possibleAnswers);
-            adjustBoxHeight();
+            if (NextQuestion) {
+                const possibleAnswers = [...new Set(filteredData.map(item => item[NextQuestion]))];
+
+                questionElement.textContent = NextQuestion;
+                createAnswerButtons(possibleAnswers);
+                adjustBoxHeight();
+            } else {
+                questionElement.textContent = `No next field available.`;
+            }
         })
         .catch(error => console.error('Error fetching data:', error));
-
-    function handleResponse(response) {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    }
 
     function createAnswerButtons(answers) {
         const fragment = document.createDocumentFragment();
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function adjustBoxHeight() {
         const numButtons = secondPageButtonsContainer.children.length;
-        const baseHeight = 250; // Base height in pixels
+        const baseHeight = 200; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;

@@ -1,71 +1,107 @@
 [
   {
     "name": "Bahama Mama",
-    "How do you prefer your cocktail to taste?": "Fruity and exotic",
-    "Which fruit appeals to you more?": "Passion fruit with a tropical vibe"
+    "Choose your base spirit": "Rum",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "Yes, something unique!"
   },
   {
-    "name": "Dragons Zombie",
-    "How do you prefer your cocktail to taste?": "Fruity and exotic",
-    "Which fruit appeals to you more?": "Dragon fruit with a hint of apricot"
-  },
-  {
-    "name": "Mango Tango",
-    "How do you prefer your cocktail to taste?": "Fruity and exotic",
-    "Which fruit appeals to you more?": "Mango with a tropical sweetness",
-    "Do you prefer your mango with a tiki touch or a bit of citrus?": "Tiki-style with pineapple and caviar-like textures"
-  },
-  {
-    "name": "Caribbean Breeze",
-    "How do you prefer your cocktail to taste?": "Fruity and exotic",
-    "Which fruit appeals to you more?": "Mango with a tropical sweetness",
-    "Do you prefer your mango with a tiki touch or a bit of citrus?": "Citrusy with a sweet and sour edge"
+    "name": "Dragon’s Zombie",
+    "Choose your base spirit": "Rum",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
     "name": "The Gardener",
-    "How do you prefer your cocktail to taste?": "Refreshing and light",
-    "What kind of refreshing note do you prefer?": "Cucumber and apple for a crisp, garden-fresh feel"
+    "Choose your base spirit": "Gin",
+    "Do you prefer your cocktail to be": "Refreshing",
+    "What type of fruit do you enjoy most in a cocktail?": "None",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
-    "name": "Watermelon Oasis",
-    "How do you prefer your cocktail to taste?": "Refreshing and light",
-    "What kind of refreshing note do you prefer?": "Watermelon with a Mediterranean touch"
+    "name": "Aegean Negroni",
+    "Choose your base spirit": "Gin",
+    "Do you prefer your cocktail to be": "Smoky or bitter",
+    "What type of fruit do you enjoy most in a cocktail?": "None",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
-    "name": "Fragolas Spritz",
-    "How do you prefer your cocktail to taste?": "Refreshing and light",
-    "What kind of refreshing note do you prefer?": "Citrusy and effervescent with strawberry accents"
-  },
-  {
-    "name": "Sweet Amigo",
-    "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
-    "What kind of sweetness do you enjoy?": "Caramel with salted or nutty notes",
-    "What combination of caramel and sweetness do you prefer?": "Salted caramel with citrus and almond"
+    "name": "Mango Tango",
+    "Choose your base spirit": "Gin",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "Yes, something unique!"
   },
   {
     "name": "Drunk Popcorn",
-    "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
-    "What kind of sweetness do you enjoy?": "Caramel with salted or nutty notes",
-    "What combination of caramel and sweetness do you prefer?": "Butterscotch with a popcorn twist and ginger"
+    "Choose your base spirit": "Vodka",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "None",
+    "Do you want any special or unique elements?": "Yes, something unique!"
   },
   {
     "name": "The Elixir",
-    "How do you prefer your cocktail to taste?": "Sweet with a twist of caramel",
-    "What kind of sweetness do you enjoy?": "Fruity sweetness with vanilla or pear"
+    "Choose your base spirit": "Vodka",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "No, keep it classic"
+  },
+  {
+    "name": "Watermelon Oasis",
+    "Choose your base spirit": "Rum",
+    "Do you prefer your cocktail to be": "Refreshing",
+    "What type of fruit do you enjoy most in a cocktail?": "None",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
     "name": "Spicy Columbus",
-    "How do you prefer your cocktail to taste?": "Spicy and bold",
-    "How intense do you like your spice?": "A balance of sweet, sour, and spicy with a fruity base"
+    "Choose your base spirit": "Tequila",
+    "Do you prefer your cocktail to be": "Spicy",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
-    "name": "Smokey Aperol",
-    "How do you prefer your cocktail to taste?": "Smoky and bittersweet",
-    "What do you want to complement the smokiness?": "Vanilla and bitters for a bittersweet balance"
+    "name": "Sweet Amigo",
+    "Choose your base spirit": "Tequila",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "No, keep it classic"
+  },
+  {
+    "name": "Fragolas Spritz",
+    "Choose your base spirit": "Other",
+    "Do you prefer your cocktail to be": "Refreshing",
+    "What type of fruit do you enjoy most in a cocktail?": "Berries (strawberries, raspberries)",
+    "Do you want any special or unique elements?": "No, keep it classic"
   },
   {
     "name": "Picasso",
-    "How do you prefer your cocktail to taste?": "Smoky and bittersweet",
-    "What do you want to complement the smokiness?": "A fruity, effervescent twist with peach and prosecco"
+    "Choose your base spirit": "Other",
+    "Do you prefer your cocktail to be": "Refreshing",
+    "What type of fruit do you enjoy most in a cocktail?": "Berries (strawberries, raspberries)",
+    "Do you want any special or unique elements?": "Yes, something unique!"
+  },
+  {
+    "name": "Caribbean Breeze",
+    "Choose your base spirit": "Other",
+    "Do you prefer your cocktail to be": "Refreshing",
+    "What type of fruit do you enjoy most in a cocktail?": "Tropical (mango, pineapple)",
+    "Do you want any special or unique elements?": "No, keep it classic"
+  },
+  {
+    "name": "Monkey’s Paradise",
+    "Choose your base spirit": "Other",
+    "Do you prefer your cocktail to be": "Sweet",
+    "What type of fruit do you enjoy most in a cocktail?": "Berries (strawberries, raspberries)",
+    "Do you want any special or unique elements?": "Yes, something unique!"
+  },
+  {
+    "name": "Smokey Aperol",
+    "Choose your base spirit": "Other",
+    "Do you prefer your cocktail to be": "Smoky or bitter",
+    "What type of fruit do you enjoy most in a cocktail?": "Citrus (lime, orange)",
+    "Do you want any special or unique elements?": "No, keep it classic"
   }
 ]

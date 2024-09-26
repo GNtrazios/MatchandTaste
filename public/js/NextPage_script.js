@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
-    const NextQuestionButtonsContainer = document.getElementById('NextQuestion-buttons-container');
+    const NextPageButtonsContainer = document.getElementById('NextPage-Question-buttons-container');
     const boxElement = document.querySelector('.box');
 
     // Get the first URL parameter key and its corresponding value
@@ -8,49 +8,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstParam = [...urlParams.keys()][0]; // Get the first parameter key
     const previousAnswer = urlParams.get(firstParam);
     const result = parseInt(firstParam, 10);     // Convert the key to an integer
-
+    
     fetch('OubiCocktails.json')
-        .then(handleResponse)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })   
         .then(data => { 
             const filteredData = data.filter(item => {
                 const values = Object.values(item);
                 return values[result] === previousAnswer;
             });
 
-            const nextFieldNameFiltered = Object.keys(filteredData[0] || {})[result + 1];
+            const NextQuestion = Object.keys(filteredData[0] || {})[result + 1];
 
-            if (nextFieldNameFiltered) {
-                const possibleAnswers = [...new Set(filteredData.map(item => item[nextFieldNameFiltered]))];
+            if (NextQuestion) {
+                const possibleAnswers = [...new Set(filteredData.map(item => item[NextQuestion]))];
 
                 if (previousAnswer) {
-                    questionElement.textContent = nextFieldNameFiltered;
+                    questionElement.textContent = NextQuestion;
                     createAnswerButtons(possibleAnswers);
+                    adjustBoxHeight();
                 } else {
-                    questionElement.textContent = `No field available for "${previousAnswer}".`;
+                    questionElement.textContent = `No next field available.`;
                 }
-            } else {           
-                //window.location.href = `Result.html?name=Cosmopolitan`;
+            } else {
                 window.location.href = `Result.html?name=${encodeURIComponent(filteredData[0].name)}`;
             }
-
-            adjustBoxHeight();
         })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            questionElement.textContent = 'Failed to load data. Please try again later.';
-        });
-
-    // Function to handle response
-    function handleResponse(response) {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    }
+        .catch(error => console.error('Error fetching data:', error));
     
-    // Function to create buttons for answers
     function createAnswerButtons(possibleAnswers) {
-        NextQuestionButtonsContainer.innerHTML = ''; // Clear existing buttons
+        NextPageButtonsContainer.innerHTML = ''; // Clear existing buttons
         const validAnswers = possibleAnswers.filter(Boolean); // Filter out falsy values
 
         const fragment = document.createDocumentFragment(); // Use DocumentFragment for performance
@@ -59,25 +50,22 @@ document.addEventListener("DOMContentLoaded", () => {
             answerButton.textContent = answer;
             answerButton.className = 'answer-btn';
             answerButton.setAttribute('data-answer', answer);
+            
+            answerButton.addEventListener('click', () => {
+                window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(answer)}`;
+            });
+
             fragment.appendChild(answerButton);
         });
-        NextQuestionButtonsContainer.appendChild(fragment);
+
+        NextPageButtonsContainer.appendChild(fragment);
     }
 
-    // Function to adjust the height of the box
     function adjustBoxHeight() {
-        const numButtons = NextQuestionButtonsContainer.children.length;
+        const numButtons = NextPageButtonsContainer.children.length;
         const baseHeight = 250; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
     }
-
-    // Event delegation for button clicks
-    NextQuestionButtonsContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('answer-btn')) {
-            const answer = event.target.getAttribute('data-answer');
-            window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(answer)}`;
-        }
-    });
 });
