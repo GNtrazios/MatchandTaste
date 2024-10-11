@@ -77,18 +77,18 @@
   {
       "name": "Aegean Negroni",
       "What kind of experience are you looking for?": "Bold and Complex",
-      "What type of complexity do you enjoy more?": "Bitter-Sweet Complexity",
-      "Do you enjoy gin-infused or herbal bitterness with slight sweetness?": "Gin-Infused and Bitter"
+      "What flavor complexity excites you?": "Bittersweet Fusion",
+      "What is your bitter combo?": "Gin-Infused and Bitter"
   },
   {
       "name": "Picasso",
       "What kind of experience are you looking for?": "Bold and Complex",
-      "What type of complexity do you enjoy more?": "Bitter-Sweet Complexity",
-      "Do you enjoy gin-infused or herbal bitterness with slight sweetness?": "Slightly Sweet with Herbal Bitterness"
+      "What flavor complexity excites you?": "Bittersweet Fusion",
+      "What is your bitter combo?": "A Bitter-sweet kick"
   },
   {
       "name": "Smokey Aperol",
       "What kind of experience are you looking for?": "Bold and Complex",
-      "What type of complexity do you enjoy more?": "Smoky and Strong"
+      "What flavor complexity excites you?": "Smoky and Strong"
   }
 ]
