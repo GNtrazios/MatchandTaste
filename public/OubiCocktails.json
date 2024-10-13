@@ -1,94 +1,125 @@
 [
   {
-      "name": "Bahama Mama",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Tropical & Exotic Fruits",
-      "What is your preferred spirit base?": "Rum-Based",
-      "Do you prefer a fruit-forward or bold tropical cocktail?": "Fruit-Forward"
+    "name": "Mango Tango",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Tropical & Exotic Sweetness",
+    "What do you think of pineapple?": "Love it!",
+    "What are you in the mood for?": "Fruity Gin-based Cocktail"
   },
   {
-      "name": "Dragons Zombie",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Tropical & Exotic Fruits",
-      "What is your preferred spirit base?": "Rum-Based",
-      "Do you prefer a fruit-forward or bold tropical cocktail?": "Bold and Tropical"
+    "name": "Caribbean Breeze",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Tropical & Exotic Sweetness",
+    "What do you think of pineapple?": "Love it!",
+    "What are you in the mood for?": "Bubbling spritz with melon"
   },
   {
-      "name": "Mango Tango",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Tropical & Exotic Fruits",
-      "What is your preferred spirit base?": "Gin-Based"
+    "name": "Dragons Zombie",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Tropical & Exotic Sweetness",
+    "What do you think of pineapple?": "Not a fan",
+    "What are you in the mood for?": "Rum-classic with a twist"
   },
   {
-      "name": "Caribbean Breeze",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Tropical & Exotic Fruits",
-      "What is your preferred spirit base?": "Wine/Moscato-Based"
+    "name": "Monkeys Paradise",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Tropical & Exotic Sweetness",
+    "What do you think of pineapple?": "Not a fan",
+    "What are you in the mood for?": "Bubbling spritz with Banana"
   },
   {
-      "name": "Fragolas Spritz",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Berry & Citrus Sweetness",
-      "Do you prefer berry flavors or citrus notes?": "Berry-Focused",
-      "Do you prefer strawberry-dominant or mixed berries?": "Strawberry-Dominant"
+    "name": "Fragolas Spritz",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Berry-Focused Sweetness",
+    "What’s your guilty pleasure?": "Strawberry-Dominant"
   },
   {
-      "name": "The Elixir",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Berry & Citrus Sweetness",
-      "Do you prefer berry flavors or citrus notes?": "Berry-Focused",
-      "Do you prefer strawberry-dominant or mixed berries?": "Mixed Berry & Passion Fruit"
+    "name": "The Elixir",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Berry-Focused Sweetness",
+    "What’s your guilty pleasure?": "Raspberries & Passion Fruit"
   },
   {
-      "name": "Sweet Amigo",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Berry & Citrus Sweetness",
-      "Do you prefer berry flavors or citrus notes?": "Citrus-Focused"
+    "name": "Bahama Mama",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Rich & Sweet",
+    "What’s your go-to booze?": "Rum"
   },
   {
-      "name": "Drunk Popcorn",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Sweet and Playful",
-      "Do you prefer rich & creamy or fruit-dessert-inspired?": "Rich & Creamy"
+    "name": "Watermelon Oasis",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Rich & Sweet",
+    "What’s your go-to booze?": "Masticha"
   },
   {
-      "name": "Monkeys Paradise",
-      "What kind of experience are you looking for?": "Fruity and Sweet",
-      "What type of fruity sweetness do you prefer?": "Sweet and Playful",
-      "Do you prefer rich & creamy or fruit-dessert-inspired?": "Fruit-Inspired"
+    "name": "Sweet Amigo",
+    "What kind of experience are you looking for?": "Levels of Sweetness",
+    "What type of sweetness are you looking for?": "Rich & Sweet",
+    "What’s your go-to booze?": "Tequila"
   },
   {
-      "name": "The Gardener",
-      "What kind of experience are you looking for?": "Light and Refreshing",
-      "Do you prefer herbal or citrus & tangy?": "Refreshing Spritz",
-      "Do you enjoy cucumber-based or watermelon-infused cocktails?": "Cucumber-Based"
+    "name": "The Gardener",
+    "What kind of experience are you looking for?": "Light and Refreshing",
+    "What is your preferred spirit base?": "Gin"
   },
   {
-      "name": "Watermelon Oasis",
-      "What kind of experience are you looking for?": "Light and Refreshing",
-      "Do you prefer herbal or citrus & tangy?": "Refreshing Spritz",
-      "Do you enjoy cucumber-based or watermelon-infused cocktails?": "Watermelon-Based"
+    "name": "Picasso",
+    "What kind of experience are you looking for?": "Light and Refreshing",
+    "What is your preferred spirit base?": "Prosecco",
+    "Which fruit flavor do you prefer?": "Peach-Flavored"
   },
   {
-      "name": "Spicy Columbus",
-      "What kind of experience are you looking for?": "Light and Refreshing",
-      "Do you prefer herbal or citrus & tangy?": "Spicy Cocktail"
+    "name": "Monkeys Paradise",
+    "What kind of experience are you looking for?": "Light and Refreshing",
+    "What is your preferred spirit base?": "Prosecco",
+    "Which fruit flavor do you prefer?": "Banana-Flavored"
   },
   {
-      "name": "Aegean Negroni",
-      "What kind of experience are you looking for?": "Bold and Complex",
-      "What flavor complexity excites you?": "Bittersweet Fusion",
-      "What is your bitter combo?": "Gin-Infused and Bitter"
+    "name": "Fragolas Spritz",
+    "What kind of experience are you looking for?": "Light and Refreshing",
+    "What is your preferred spirit base?": "Moschato D'asti",
+    "What excites your taste buds?": "Strawberry Delight"
   },
   {
-      "name": "Picasso",
-      "What kind of experience are you looking for?": "Bold and Complex",
-      "What flavor complexity excites you?": "Bittersweet Fusion",
-      "What is your bitter combo?": "A Bitter-sweet kick"
+    "name": "Caribbean Breeze",
+    "What kind of experience are you looking for?": "Light and Refreshing",
+    "What is your preferred spirit base?": "Moschato D'asti",
+    "What excites your taste buds?": "Tropical Vibe"
   },
   {
-      "name": "Smokey Aperol",
-      "What kind of experience are you looking for?": "Bold and Complex",
-      "What flavor complexity excites you?": "Smoky and Strong"
+    "name": "Aegean Negroni",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Classics with a twist",
+    "What’s your combo?": "Gin-Infused and Bitter"
+  },
+  {
+    "name": "Dragons Zombie",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Classics with a twist",
+    "What’s your combo?": "Rum-based with tropical sweetness"
+  },
+  {
+    "name": "Spicy Columbus",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Smokey & Spicy",
+    "What’s your signature duo?": "Spicy with Tequila"
+  },
+  {
+    "name": "Smokey Aperol",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Smokey & Spicy",
+    "What’s your signature duo?": "Bitter-Sweet and Smokey"
+  },
+  {
+    "name": "Drunk Popcorn",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Sweet Meets Salty",
+    "Feeling adventurous?": "Yes, surprise me!"
+  },
+  {
+    "name": "Sweet Amigo",
+    "What kind of experience are you looking for?": "Bold and Complex",
+    "What flavor complexity excites you?": "Sweet Meets Salty",
+    "Feeling adventurous?": "No, keep it simple"
   }
 ]
