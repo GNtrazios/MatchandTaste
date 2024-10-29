@@ -12,13 +12,20 @@
             <p class="question"></p>
             <div id="NextPage-Question-buttons-container" class="button-container"></div>
 
-            <div class="home-button-container">
+            <div class="home-back-button-container">
                 <a href="index.html">
                     <button class="home-button">Home</button>
                 </a>
+                <button class="back-button" onclick="goBack()">Back</button>
             </div>
         </div>
     </div>
     <script src="js/NextPage_script.js"></script>
+    <script>
+        // JavaScript function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
