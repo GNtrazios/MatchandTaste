@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             questionElement.textContent = FirstQuestion;
 
             createAnswerButtons(possibleAnswers);
-            updateBoxHeight();
+            //updateBoxHeight();
         })
         .catch(error => console.error('Error fetching data:', error));
 
@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         InitialPageButtonsContainer.appendChild(fragment);
     }
 
-    function updateBoxHeight() {
+    /*function updateBoxHeight() {
         const numButtons = InitialPageButtonsContainer.children.length;
         const baseHeight = 150; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
-    }
+    }*/
 });

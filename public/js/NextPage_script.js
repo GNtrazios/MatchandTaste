@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (previousAnswer) {
                     questionElement.textContent = NextQuestion;
                     createAnswerButtons(possibleAnswers);
-                    adjustBoxHeight();
+                    //adjustBoxHeight();
                 } else {
                     questionElement.textContent = `No next field available.`;
                 }
@@ -61,11 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
         NextPageButtonsContainer.appendChild(fragment);
     }
 
-    function adjustBoxHeight() {
+    /*function adjustBoxHeight() {
         const numButtons = NextPageButtonsContainer.children.length;
         const baseHeight = 250; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
-    }
+    }*/
 });
