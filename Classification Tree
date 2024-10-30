@@ -1,53 +1,67 @@
-??? What kind of experience are you looking for?
-    ??? A) Fruity and Sweet
-    ?   ??? What type of fruity sweetness do you prefer?
-    ?   ?   ??? A) Tropical & Exotic Fruits
-    ?   ?   ?   ??? What is your preferred spirit base?
-    ?   ?   ?   ?   ??? A) Rum-Based
-    ?   ?   ?   ?   ?   ??? Do you prefer a fruit-forward or bold tropical cocktail?
-    ?   ?   ?   ?   ?   ?   ??? A) Fruit-Forward
-    ?   ?   ?   ?   ?   ?   ?   ??? Result: Bahama Mama
-    ?   ?   ?   ?   ?   ?   ??? B) Bold and Tropical
-    ?   ?   ?   ?   ?   ?   ?   ??? Result: Dragons Zombie
-    ?   ?   ?   ?   ??? B) Gin-Based
-    ?   ?   ?   ?   ?       ??? Result: Mango Tango
-    ?   ?   ?   ?   ??? C) Wine/Moscato-Based
-    ?   ?   ?   ?   ?       ??? Result: Caribbean Breeze
-    ?   ?   ??? B) Berry & Citrus Sweetness
-    ?   ?   ?   ??? Do you prefer berry flavors or citrus notes?
-    ?   ?   ?   ?   ??? A) Berry-Focused
-    ?   ?   ?   ?   ?   ??? Do you prefer strawberry-dominant or mixed berries?
-    ?   ?   ?   ?   ?   ?   ??? A) Strawberry-Dominant
-    ?   ?   ?   ?   ?   ?   ?   ??? Result: Fragolas Spritz
-    ?   ?   ?   ?   ?   ?   ??? B) Mixed Berry & Passion Fruit
-    ?   ?   ?   ?   ?   ?   ?   ??? Result: The Elixir
-    ?   ?   ?   ?   ??? B) Citrus-Focused
-    ?   ?   ?   ?   ?       ??? Result: Sweet Amigo
-    ?   ?   ??? C) Sweet and Playful
-    ?   ?   ?   ??? Do you prefer rich & creamy or fruit-dessert-inspired?
-    ?   ?   ?   ?   ??? A) Rich & Creamy
-    ?   ?   ?   ?   ?       ??? Result: Drunk Popcorn
-    ?   ?   ?   ?   ??? B) Fruit-Inspired
-    ?   ?   ?   ?   ?       ??? Result: Monkeys Paradise
-    ?
-    ??? B) Light and Refreshing
-    ?   ??? Do you prefer herbal or citrus & tangy?
-    ?   ?   ??? A) Refreshing Spritz
-    ?   ?   ?   ??? Do you enjoy cucumber-based or watermelon-infused cocktails?
-    ?   ?   ?   ?   ??? A) Cucumber-Based
-    ?   ?   ?   ?   ?   ??? Result: The Gardener
-    ?   ?   ?   ?   ??? B) Watermelon-Based
-    ?   ?   ?   ?   ?   ??? Result: Watermelon Oasis
-    ?   ?   ??? B) Spicy Cocktail
-    ?   ?   ?       ??? Result: Spicy Columbus
-    ?
-    ??? C) Bold and Complex
-    ?   ??? What flavor complexity excites you?
-    ?   ?   ??? A) Bittersweet Fusion
-    ?   ?   ?   ??? What�s your flavor combo?
-    ?   ?   ?   ?   ??? A) Gin-Infused and Bitter
-    ?   ?   ?   ?   ?   ??? Result: Aegean Negroni
-    ?   ?   ?   ?   ??? B) Bitter with a sweet kick
-    ?   ?   ?   ?   ?   ??? Result: Picasso
-    ?   ?   ??? B) Smoky and Strong
-    ?   ?   ?       ??? Result: Smokey Aperol
+└── What kind of experience are you looking for?
+    ├── A) Levels of Sweetness
+    │   ├── What type of sweetness are you looking for?
+    │   │   ├── A) Tropical & Exotic Sweetness
+    │   │   │   ├── What do you think of pineapple?
+    │   │   │   │   ├── A) Love it!
+    │   │   │   │   │   ├── What are you in the mood for?
+    │   │   │   │   │   │   ├── A) Fruity Gin-based Cocktail
+    │   │   │   │   │   │   │   └── Result: Mango Tango 
+    │   │   │   │   │   │   ├── B) Bubbling spritz with melon
+    │   │   │   │   │   │   │   └── Result: Caribbean Breeze 
+    │   │   │   │   ├── B) Not a fan
+    │   │   │   │   │   ├── What are you in the mood for?
+    │   │   │   │   │   │   ├── A) Rum-classic with a twist
+    │   │   │   │   │   │   │   └── Result: Dragons Zombie 
+    │   │   │   │   │   │   ├── B) Bubbling spritz with Banana
+    │   │   │   │   │   │   │   └── Result: Monkeys Paradise 
+    │   │   ├── B) Berry-Focused Sweetness
+    │   │   │   ├── What’s your guilty pleasure?
+    │   │   │   │   ├── A) Strawberry-Dominant
+    │   │   │   │   │   └── Result: Fragolas Spritz
+    │   │   │   │   ├── B) Raspberries & Passion Fruit
+    │   │   │   │   │   └── Result: The Elixir
+    │   │   ├── C) Rich & Sweet
+    │   │   │   ├── What’s your go-to booze?
+    │   │   │   │   ├── A) Rum
+    │   │   │   │   │   └── Result: Bahama Mama
+    │   │   │   │   ├── B) Masticha
+    │   │   │   │   │   └── Result: Watermelon Oasis
+    │   │   │   │   ├── C) Tequila
+    │   │   │   │   │   └── Result: Sweet Amigo
+    ├── B) Light and Refreshing
+    │   ├── What is your preferred spirit base?
+    │   │   ├── A) Gin
+    │   │   │   └── Result: The Gardener
+    │   │   ├── B) Prosecco
+    │   │   │   ├── Which fruit flavor do you prefer?
+    │   │   │   │   ├── A) Peach-Flavored
+    │   │   │   │   │   └── Result: Picasso
+    │   │   │   │   ├── B) Banana-Flavored
+    │   │   │   │   │   └── Result: Monkeys Paradise
+    │   │   ├── C) Moschato D'asti
+    │   │   │   ├── What excites your taste buds?
+    │   │   │   │   ├── A) Strawberry Delight
+    │   │   │   │   │   └── Result: Fragolas Spritz
+    │   │   │   │   ├── B) Tropical Vibe
+    │   │   │   │   │   └── Result: Caribbean Breeze
+    ├── C) Bold and Complex
+    │   ├── What flavor complexity excites you?
+    │   │   ├── A) Classics with a twist
+    │   │   │   ├── What’s your combo?
+    │   │   │   │   ├── A) Gin-Infused and Bitter
+    │   │   │   │   │   └── Result: Aegean Negroni
+    │   │   │   │   ├── B) Rum-based with tropical sweetness
+    │   │   │   │   │   └── Result: Dragons Zombie 
+    │   │   ├── B) Smokey & Spicy 
+    │   │   │   ├── What’s your signature duo?
+    │   │   │   │   ├── A) Spicy with Tequila 
+    │   │   │   │   │   └── Result: Spicy Columbus 
+    │   │   │   │   ├── B) Bitter-Sweet and Smokey
+    │   │   │   │   │   └── Result: Smokey Aperol
+    │   │   ├── C) Sweet Meets Salty
+    │   │   │   ├── Feeling adventurous?
+    │   │   │   │   ├── A) Yes, surprise me!
+    │   │   │   │   │   └── Result: Drunk Popcorn
+    │   │   │   │   ├── B) No, keep it simple
+    │   │   │   │   │   └── Result: Sweet Amigo

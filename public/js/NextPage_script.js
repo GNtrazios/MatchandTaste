@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const NextQuestion = Object.keys(filteredData[0] || {})[result + 1];
 
-            if (NextQuestion) {
+            if (NextQuestion != 'description') {
                 const possibleAnswers = [...new Set(filteredData.map(item => item[NextQuestion]))];
 
                 if (previousAnswer) {
