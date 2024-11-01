@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ question }) // Send the question to increment its counter
+                    body: JSON.stringify({ question, selectedAnswer }) // Send the question to increment its counter
                 })
                 .then(response => response.json())
                 .then(data => {

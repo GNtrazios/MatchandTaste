@@ -1,22 +1,22 @@
 import fetch from 'node-fetch';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ensure this is set in Vercel
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ensure your GitHub token is set in Vercel Environment Variables
 const REPO = 'GNtrazios/MatchandTaste'; // Your GitHub repository
 const FILE_PATH = 'public/CounterOfAnswers.json'; // Path to your JSON file
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { question } = req.body;
+        const { question, selectedAnswer } = req.body;
 
-        if (!question) {
-            return res.status(400).json({ message: 'Question is required' });
+        if (!question || !selectedAnswer) { // Check for both values
+            return res.status(400).json({ message: 'Both question and selected answer are required' });
         }
 
         // Fetch the current JSON data from GitHub
         const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
             headers: {
                 Authorization: `token ${GITHUB_TOKEN}`,
-                Accept: 'application/vnd.github.v3+json' // Get the JSON metadata
+                Accept: 'application/vnd.github.v3+json'
             }
         });
 
@@ -26,13 +26,11 @@ export default async function handler(req, res) {
         }
 
         const jsonData = await response.json();
-
-        // Get the content and SHA from the response
         const fileContent = Buffer.from(jsonData.content, 'base64').toString('utf-8');
         const jsonContent = JSON.parse(fileContent);
 
-        // Find the matching question and increment the counter
-        const item = jsonContent.find(item => item.question === question);
+        // Find the matching question and selected answer pair
+        const item = jsonContent.find(item => item.question === question && item.answer === selectedAnswer);
         if (item) {
             item.counter += 1; // Increment the counter
         } else {
@@ -51,7 +49,7 @@ export default async function handler(req, res) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: 'Incremented counter',
+                message: 'Incremented counter for selected answer',
                 content: encodedContent,
                 sha: jsonData.sha // Provide the SHA of the existing file for updates
             })
@@ -62,7 +60,7 @@ export default async function handler(req, res) {
             return res.status(500).json({ message: 'Failed to update the JSON file' });
         }
 
-        res.status(200).json({ message: 'Counter updated successfully' });
+        res.status(200).json({ message: 'Counter updated successfully', question, selectedAnswer });
     } else {
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
