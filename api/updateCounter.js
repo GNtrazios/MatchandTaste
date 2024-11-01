@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Add your GitHub token in Vercel Environment Variables
-const REPO = 'GNtrazios/MatchandTaste'; // Change this to your GitHub username and repository name
-const FILE_PATH = 'public/CounterOfAnswers.json'; // Change this to the path of your JSON file in the repo
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Ensure this is set in Vercel
+const REPO = 'GNtrazios/MatchandTaste'; // Your GitHub repository
+const FILE_PATH = 'public/CounterOfAnswers.json'; // Path to your JSON file
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
@@ -16,16 +16,20 @@ export default async function handler(req, res) {
         const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
             headers: {
                 Authorization: `token ${GITHUB_TOKEN}`,
-                Accept: 'application/vnd.github.v3.raw' // Get raw content
+                Accept: 'application/vnd.github.v3+json' // Get the JSON metadata
             }
         });
 
         if (!response.ok) {
+            console.error('Error fetching JSON:', response.statusText);
             return res.status(500).json({ message: 'Failed to fetch the JSON file' });
         }
 
         const jsonData = await response.json();
-        const jsonContent = JSON.parse(jsonData);
+
+        // Get the content and SHA from the response
+        const fileContent = Buffer.from(jsonData.content, 'base64').toString('utf-8');
+        const jsonContent = JSON.parse(fileContent);
 
         // Find the matching question and increment the counter
         const item = jsonContent.find(item => item.question === question);
@@ -54,6 +58,7 @@ export default async function handler(req, res) {
         });
 
         if (!updateResponse.ok) {
+            console.error('Error updating JSON:', updateResponse.statusText);
             return res.status(500).json({ message: 'Failed to update the JSON file' });
         }
 
