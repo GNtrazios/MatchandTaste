@@ -81,14 +81,14 @@ button:hover {
     border: none;
     padding: 12px 20px; /* Pad ding for the button */
     border-radius: 10px; /* Rounded corners */
-    font-size: 20px; /* Font size */
+    font-size: 18px; /* Font size */
     cursor: pointer; /* Pointer cursor on hover */
     margin-top: 20px; /* Margin above the button */
 }
 
 #randomCocktailButton i {
-    margin-right: 7px; /* Spacing between icon and text */
-    margin-left: 7px; /* Spacing between icon and text */
+    margin-right: 5px; /* Spacing between icon and text */
+    margin-left: 5x; /* Spacing between icon and text */
     font-size: 30px; /* Icon size */
     vertical-align: middle; /* Aligns icon vertically */
 }
