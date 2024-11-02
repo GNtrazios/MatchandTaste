@@ -77,16 +77,13 @@ button:hover {
 #randomCocktailButton {
     background: linear-gradient(45deg, #b30000, #ff6600); /* Default background: deep red to bright orange */
     background-size: 300%; /* Ensures a smoother color transition */
-    width: 18%;
+    width: 60%;
     border: none;
     padding: 12px 20px; /* Pad ding for the button */
     border-radius: 10px; /* Rounded corners */
     font-size: 20px; /* Font size */
     cursor: pointer; /* Pointer cursor on hover */
     margin-top: 20px; /* Margin above the button */
-    align-items: center; /* Centering vertically */
-    justify-content: center; /* Centering horizontally */
-    transition: background-position 0.3s; /* Smooth transition for background on hover */
 }
 
 #randomCocktailButton i {
