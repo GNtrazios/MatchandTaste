@@ -87,8 +87,8 @@ button:hover {
 }
 
 #randomCocktailButton i {
-    margin-right: 10px; /* Spacing between icon and text */
-    margin-left: 10px; /* Spacing between icon and text */
+    margin-right: 7px; /* Spacing between icon and text */
+    margin-left: 7px; /* Spacing between icon and text */
     font-size: 30px; /* Icon size */
     vertical-align: middle; /* Aligns icon vertically */
 }
