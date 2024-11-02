@@ -5,21 +5,8 @@ const REPO = 'GNtrazios/MatchandTaste';
 const FILE_PATH = 'public/CounterOfAnswers.json';
 
 let updates = []; // In-memory buffer for updates
-const MAX_UPDATES_BEFORE_FLUSH = 10; // Max updates before sending to GitHub
+const MAX_UPDATES_BEFORE_FLUSH = 5; // Max updates before sending to GitHub
 const FLUSH_INTERVAL = 5 * 60 * 1000; // Flush every 5 minutes
-const LOCAL_STORAGE_KEY = 'pendingUpdates'; // Key for local storage
-
-// Load saved updates from local storage (to be invoked on server start)
-function loadSavedUpdates() {
-    const savedUpdates = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
-    updates.push(...savedUpdates); // Add saved updates to in-memory buffer
-    localStorage.removeItem(LOCAL_STORAGE_KEY); // Clear saved updates after loading
-}
-
-// Save updates to local storage for persistence
-function saveUpdatesToLocal() {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updates)); // Store current updates in local storage
-}
 
 // Function to send updates to GitHub
 async function updateCounter(updatesToFlush) {
@@ -107,9 +94,6 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { question, selectedAnswer } = req.body;
         updates.push({ question, selectedAnswer }); // Add the update to the buffer
-
-        // Save to local storage to ensure data persistence
-        saveUpdatesToLocal();
 
         // Check if we reached the maximum updates limit
         if (updates.length >= MAX_UPDATES_BEFORE_FLUSH) {
