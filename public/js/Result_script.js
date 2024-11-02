@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateCocktailUI(cocktail) {
-      cocktailImage.src = `images/${cocktail.name.replace(/\s/g, '')}.jpg`;
+      // cocktailImage.src = `images/${cocktail.name.replace(/\s/g, '')}.jpg`;
+      cocktailImage.src = `images/MaiTai.jpg`;
       cocktailImage.alt = cocktail.name;
       cocktailName.textContent = cocktail.name;
       cocktailDescription.textContent = cocktail.description;

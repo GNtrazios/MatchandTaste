@@ -79,12 +79,11 @@ button:hover {
     background-size: 300%; /* Ensures a smoother color transition */
     width: 18%;
     border: none;
-    padding: 12px 20px; /* Padding for the button */
+    padding: 12px 20px; /* Pad ding for the button */
     border-radius: 10px; /* Rounded corners */
     font-size: 20px; /* Font size */
     cursor: pointer; /* Pointer cursor on hover */
     margin-top: 20px; /* Margin above the button */
-    display: flex; /* Flexbox for centering */
     align-items: center; /* Centering vertically */
     justify-content: center; /* Centering horizontally */
     transition: background-position 0.3s; /* Smooth transition for background on hover */

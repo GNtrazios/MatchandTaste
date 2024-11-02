@@ -24,12 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const NextQuestion = Object.keys(filteredData[0] || {})[result + 1];
 
-            if (NextQuestion != 'description') {
+            if (NextQuestion && NextQuestion !== 'description') {
                 const possibleAnswers = [...new Set(filteredData.map(item => item[NextQuestion]))];
 
                 if (previousAnswer) {
                     questionElement.textContent = NextQuestion;
-                    createAnswerButtons(possibleAnswers);
+                    createAnswerButtons(possibleAnswers, NextQuestion);
                     //adjustBoxHeight();
                 } else {
                     questionElement.textContent = `No next field available.`;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error fetching data:', error));
     
-    function createAnswerButtons(possibleAnswers) {
+    function createAnswerButtons(possibleAnswers, question) {
         NextPageButtonsContainer.innerHTML = ''; // Clear existing buttons
         const validAnswers = possibleAnswers.filter(Boolean); // Filter out falsy values
 
@@ -52,7 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
             answerButton.setAttribute('data-answer', answer);
             
             answerButton.addEventListener('click', () => {
-                window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(answer)}`;
+                const selectedAnswer = answerButton.getAttribute('data-answer');
+
+                // Send a POST request to update the counter on GitHub
+                fetch('/api/updateCounter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question, selectedAnswer }) // Send the question and answer to increment its counter
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message); // Log success message
+                    // Redirect to the next page with selected answer in URL
+                    window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(selectedAnswer)}`;
+                })
+                .catch(error => console.error('Error sending data:', error));
             });
 
             fragment.appendChild(answerButton);
@@ -61,11 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
         NextPageButtonsContainer.appendChild(fragment);
     }
 
-    /*function adjustBoxHeight() {
+    /* Optional: Adjust box height based on number of buttons
+    function adjustBoxHeight() {
         const numButtons = NextPageButtonsContainer.children.length;
         const baseHeight = 250; // Base height in pixels
         const buttonHeight = 40; // Height of each button (including margin)
         const newHeight = baseHeight + (numButtons * buttonHeight);
         boxElement.style.height = `${newHeight}px`;
-    }*/
+    }
+    */
 });
