@@ -5,8 +5,8 @@ const REPO = 'GNtrazios/MatchandTaste';
 const FILE_PATH = 'public/CounterOfAnswers.json';
 
 let updates = []; // In-memory buffer for updates
-const MAX_UPDATES_BEFORE_FLUSH = 5; // Max updates before sending to GitHub
-const FLUSH_INTERVAL = 5 * 60 * 1000; // Flush every 5 minutes
+const MAX_UPDATES_BEFORE_FLUSH = 20; // Max updates before sending to GitHub
+const FLUSH_INTERVAL = 10 * 60 * 1000; // Flush every 5 minutes
 
 // Function to send updates to GitHub
 async function updateCounter(updatesToFlush) {
