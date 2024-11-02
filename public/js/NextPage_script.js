@@ -8,11 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const previousAnswer = urlParams.get(firstParam);
     const result = parseInt(firstParam, 10);
 
-    fetch('OubiCocktails.json')
-        .then(response => {
+    // Improved fetch with retry logic, logs errors to console
+    function fetchWithRetry(url, options = {}, retries = 3) {
+        return fetch(url, options).then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
-        })   
+        }).catch(error => {
+            if (retries > 0) return fetchWithRetry(url, options, retries - 1);
+            else {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        });
+    }
+
+    // Fetch cocktail data
+    fetchWithRetry('OubiCocktails.json')
         .then(data => { 
             const filteredData = data.filter(item => {
                 const values = Object.values(item);
@@ -43,26 +54,35 @@ document.addEventListener("DOMContentLoaded", () => {
             answerButton.className = 'answer-btn';
             answerButton.setAttribute('data-answer', answer);
             
-            answerButton.addEventListener('click', () => {
+            // Use debounce to prevent multiple clicks
+            answerButton.addEventListener('click', debounce(() => {
                 const selectedAnswer = answerButton.getAttribute('data-answer');
 
-                fetch('/api/updateCounter', {
+                fetchWithRetry('/api/updateCounter', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ question, selectedAnswer })
                 })
-                .then(response => response.json())
                 .then(data => {
                     window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(selectedAnswer)}`;
                 })
                 .catch(error => console.error('Error sending data:', error));
-            });
+            }, 300));
 
             fragment.appendChild(answerButton);
         });
 
         NextPageButtonsContainer.appendChild(fragment);
+    }
+
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
     }
 });
