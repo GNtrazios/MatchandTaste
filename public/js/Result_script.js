@@ -10,9 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchCocktailData(selectedCocktailName)
       .then(selectedCocktail => {
           if (selectedCocktail) {
-            updateCocktailUI(selectedCocktail);
-          } else {
-            alert(`Cocktail "${selectedCocktailName}" not found!`);
+              updateCocktailUI(selectedCocktail);
           }
       })
       .catch(error => console.error('Error fetching data:', error));

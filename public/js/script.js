@@ -1,31 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
     const InitialPageButtonsContainer = document.getElementById('InitialPage-buttons-container');
-    const boxElement = document.querySelector('.box');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
-    let cocktails = []; // To store the JSON data after fetching
+    let cocktails = [];
 
-    // Fetch the cocktail data
-    fetch('OubiCocktails.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    // Improved fetch with retry logic, logs errors to console
+    function fetchWithRetry(url, options = {}, retries = 3) {
+        return fetch(url, options).then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
-        })
+        }).catch(error => {
+            if (retries > 0) return fetchWithRetry(url, options, retries - 1);
+            else {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        });
+    }
+
+    // Fetch cocktail data
+    fetchWithRetry('OubiCocktails.json')
         .then(data => {
-            cocktails = data; // Store data for later use by the random button
+            cocktails = data;
             const FirstQuestion = Object.keys(data[0])[1];
             const possibleAnswers = [...new Set(data.map(cocktail => cocktail[FirstQuestion]))];
-            
+
             // Display the first question and create answer buttons
             questionElement.textContent = FirstQuestion;
             createAnswerButtons(possibleAnswers);
-            // updateBoxHeight(); // Optional: uncomment if dynamic height is needed
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => console.error('Error loading cocktails data:', error));
 
-    // Function to create answer buttons
+    // Create answer buttons
     function createAnswerButtons(answers) {
         const fragment = document.createDocumentFragment();
 
@@ -35,27 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
             answerButton.className = 'answer-btn';
             answerButton.setAttribute('data-answer', answer);
 
-            // Redirect to the second page with selected answer in URL
-            answerButton.addEventListener('click', () => {
-                const selectedAnswer = answerButton.getAttribute('data-answer');
-                const question = questionElement.textContent;
-
-                // Send a POST request to update the counter on GitHub
-                fetch('/api/updateCounter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ question, selectedAnswer }) // Send the question to increment its counter
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message); // Log success message
-                    // Redirect to the second page with selected answer in URL
-                    window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
-                })
-                .catch(error => console.error('Error sending data:', error));
-            });
+            // Use debounce to prevent multiple clicks
+            answerButton.addEventListener('click', debounce(() => handleAnswerClick(answer), 300));
 
             fragment.appendChild(answerButton);
         });
@@ -63,24 +50,40 @@ document.addEventListener("DOMContentLoaded", () => {
         InitialPageButtonsContainer.appendChild(fragment);
     }
 
-    // Event listener for the random cocktail button
+    // Handle answer click
+    function handleAnswerClick(selectedAnswer) {
+        const question = questionElement.textContent;
+
+        fetchWithRetry('/api/updateCounter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question, selectedAnswer })
+        })
+        .then(data => {
+            console.log('Counter updated:', data.message);
+            window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
+        })
+        .catch(error => console.error('Error updating counter:', error));
+    }
+
+    // Event listener for random cocktail button
     randomCocktailButton.addEventListener("click", () => {
         if (cocktails.length > 0) {
-            // Select a random cocktail from the data
             const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
             window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
         } else {
-            console.error('Cocktail data not loaded');
+            console.error('Cocktails data not loaded yet');
         }
     });
 
-    /* Optional: Function to dynamically update box height based on number of buttons
-    function updateBoxHeight() {
-        const numButtons = InitialPageButtonsContainer.children.length;
-        const baseHeight = 150; // Base height in pixels
-        const buttonHeight = 40; // Height of each button (including margin)
-        const newHeight = baseHeight + (numButtons * buttonHeight);
-        boxElement.style.height = `${newHeight}px`;
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
     }
-    */
 });
