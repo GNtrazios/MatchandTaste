@@ -75,8 +75,8 @@ button:hover {
 
 /* Style for the 'Get Random Cocktail' button with deep red/orange background and lighter hover effect */
 #randomCocktailButton {
-    background: linear-gradient(45deg, #b30000, #ff6600);
-    background-size: 300%;
+    background: #ef1f1f;
+    background-size: 100%;
     width: 60%;
     border: none;
     padding: 12px 20px;
@@ -94,7 +94,7 @@ button:hover {
 }
 
 #randomCocktailButton:hover {
-    background: linear-gradient(45deg, #ff9966, #ffcc66);
+    background: #ef5e5e;
     background-size: 300%;
 }
 
@@ -105,7 +105,7 @@ button:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2); /* Almost transparent white background */
+    background-color: rgba(0, 0, 0, 0.1); /* Almost transparent white background */
     display: flex;
     align-items: center;
     justify-content: center;
