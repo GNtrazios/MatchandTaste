@@ -2,7 +2,7 @@
   {
     "question": "What kind of experience are you looking for?",
     "answer": "Levels of Sweetness",
-    "counter": 20
+    "counter": 23
   },
   {
     "question": "What type of sweetness are you looking for?",
@@ -42,7 +42,7 @@
   {
     "question": "What type of sweetness are you looking for?",
     "answer": "Berry-Focused Sweetness",
-    "counter": 0
+    "counter": 1
   },
   {
     "question": "What’s your guilty pleasure?",
@@ -77,7 +77,7 @@
   {
     "question": "What kind of experience are you looking for?",
     "answer": "Light and Refreshing",
-    "counter": 0
+    "counter": 4
   },
   {
     "question": "What is your preferred spirit base?",
@@ -87,7 +87,7 @@
   {
     "question": "What is your preferred spirit base?",
     "answer": "Prosecco",
-    "counter": 0
+    "counter": 1
   },
   {
     "question": "Which fruit flavor do you prefer?",
@@ -102,7 +102,7 @@
   {
     "question": "What is your preferred spirit base?",
     "answer": "Moschato D'asti",
-    "counter": 0
+    "counter": 1
   },
   {
     "question": "What excites your taste buds?",
