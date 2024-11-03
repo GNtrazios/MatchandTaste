@@ -2,7 +2,7 @@
   {
     "question": "What kind of experience are you looking for?",
     "answer": "Levels of Sweetness",
-    "counter": 5
+    "counter": 8
   },
   {
     "question": "What type of sweetness are you looking for?",
@@ -77,7 +77,7 @@
   {
     "question": "What kind of experience are you looking for?",
     "answer": "Light and Refreshing",
-    "counter": 4
+    "counter": 7
   },
   {
     "question": "What is your preferred spirit base?",
@@ -117,7 +117,7 @@
   {
     "question": "What kind of experience are you looking for?",
     "answer": "Bold and Complex",
-    "counter": 2
+    "counter": 6
   },
   {
     "question": "What flavor complexity excites you?",
