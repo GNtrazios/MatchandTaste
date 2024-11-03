@@ -5,18 +5,11 @@ const REPO = 'GNtrazios/MatchandTaste';
 const FILE_PATH = 'public/CounterOfAnswers.json';
 
 let updates = []; // In-memory buffer for updates
-const MAX_UPDATES_BEFORE_FLUSH = 20; // Max updates before sending to GitHub
-const FLUSH_INTERVAL = 10 * 60 * 1000; // Flush every 5 minutes
+const MAX_UPDATES_BEFORE_FLUSH = 10; // Max updates before sending to GitHub
+const FLUSH_INTERVAL = 5 * 60 * 1000; // Flush every 5 minutes
 
-// Function to send updates to GitHub
-async function updateCounter(lastUpdate) {
-    const { question, selectedAnswer } = lastUpdate;
-    
-    if (!question || !selectedAnswer) {
-        console.error('Both question and selected answer are required');
-        return;
-    }
-
+// Function to fetch and update JSON content on GitHub with accumulated updates
+async function updateCounter(mergedUpdates) {
     try {
         // Fetch the current content of the JSON file
         const response = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
@@ -32,20 +25,21 @@ async function updateCounter(lastUpdate) {
         const fileContent = Buffer.from(jsonData.content, 'base64').toString('utf-8');
         const jsonContent = JSON.parse(fileContent);
 
-        // Find the matching question-answer pair and increment the counter
-        const item = jsonContent.find(item => item.question === question && item.answer === selectedAnswer);
-        if (item) {
-            item.counter += 1;
-        } else {
-            console.error('Question not found');
-            return; // Exit if question not found
+        // Apply all merged updates to the JSON content
+        for (const { question, selectedAnswer, count } of mergedUpdates) {
+            const item = jsonContent.find(item => item.question === question && item.answer === selectedAnswer);
+            if (item) {
+                item.counter += count;
+            } else {
+                console.error('Question-answer pair not found:', question, selectedAnswer);
+            }
         }
 
         // Prepare updated content
         const updatedContent = JSON.stringify(jsonContent, null, 2);
         const encodedContent = Buffer.from(updatedContent).toString('base64');
 
-        // Update JSON file on GitHub
+        // Update JSON file on GitHub with a single commit
         const updateResponse = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
             method: 'PUT',
             headers: {
@@ -53,7 +47,7 @@ async function updateCounter(lastUpdate) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: 'Incremented counter for selected answer',
+                message: 'Batch update: incremented counters for multiple questions',
                 content: encodedContent,
                 sha: jsonData.sha
             })
@@ -61,19 +55,28 @@ async function updateCounter(lastUpdate) {
 
         if (!updateResponse.ok) throw new Error('Failed to update JSON file');
 
-        console.log('Counter updated successfully:', question, selectedAnswer);
+        console.log('Counter updated successfully with a single commit');
     } catch (error) {
         console.error('Error updating counter:', error);
-        // Retry logic could be added here if desired
     }
 }
 
-// Flush only the last update in the buffer to GitHub
+// Flush updates to GitHub at specified intervals or when the limit is reached
 async function flushUpdates() {
     if (updates.length > 0) {
-        const lastUpdate = updates[updates.length - 1]; // Get only the last update
-        updates = []; // Clear the entire buffer
-        await updateCounter(lastUpdate); // Send only the last update to GitHub
+        // Merge updates by counting occurrences of each unique question-answer pair
+        const mergedUpdates = updates.reduce((acc, { question, selectedAnswer }) => {
+            const existing = acc.find(item => item.question === question && item.selectedAnswer === selectedAnswer);
+            if (existing) {
+                existing.count += 1;
+            } else {
+                acc.push({ question, selectedAnswer, count: 1 });
+            }
+            return acc;
+        }, []);
+
+        updates = []; // Clear in-memory buffer for new updates
+        await updateCounter(mergedUpdates); // Send the merged updates to GitHub
     }
 }
 
