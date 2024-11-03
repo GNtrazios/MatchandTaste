@@ -15,7 +15,10 @@
     <script defer src="/_vercel/insights/script.js"></script>
     -->
     <!-- End of Vercel Analytics Script -->
-     
+
+    <!-- Prefetch links for faster loading of next pages -->
+    <link rel="prefetch" href="SecondPage.html">
+    <link rel="prefetch" href="Result.html">
 </head>
 <body>
     <div class="background">
@@ -23,8 +26,16 @@
             <p class="question"></p>
             <div id="InitialPage-buttons-container" class="button-container"></div>
         </div>
-        <button id="randomCocktailButton" class="centered-button"><i class="fas fa-dice"></i> Surprise me <i class="fas fa-dice"></i></button>
+        <button id="randomCocktailButton" class="centered-button">
+            <i class="fas fa-dice"></i> Surprise me <i class="fas fa-dice"></i>
+        </button>
     </div>
+
+    <!-- Loading Spinner Overlay -->
+    <div class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

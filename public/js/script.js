@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
     const InitialPageButtonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
+    const loadingOverlay = document.querySelector('.loading-overlay');
     let cocktails = [];
 
-    // Improved fetch with retry logic, logs errors to console
+    // Fetch function with retry logic
     function fetchWithRetry(url, options = {}, retries = 3) {
         return fetch(url, options).then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -54,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleAnswerClick(selectedAnswer) {
         const question = questionElement.textContent;
 
+        // Show the loading overlay
+        loadingOverlay.style.visibility = 'visible';
+
         fetchWithRetry('/api/updateCounter', {
             method: 'POST',
             headers: {
@@ -61,24 +65,32 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             body: JSON.stringify({ question, selectedAnswer })
         })
-        .then(data => {
-            console.log('Counter updated:', data.message);
+        .then(() => {
+            // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
         })
-        .catch(error => console.error('Error updating counter:', error));
+        .catch(error => {
+            console.error('Error updating counter:', error);
+            loadingOverlay.style.visibility = 'hidden'; // Hide overlay on error
+        });
     }
 
     // Event listener for random cocktail button
     randomCocktailButton.addEventListener("click", () => {
         if (cocktails.length > 0) {
             const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
+
+            // Show the loading overlay
+            loadingOverlay.style.visibility = 'visible';
+
+            // Redirect to the result page with random cocktail name as query parameter
             window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
         } else {
             console.error('Cocktails data not loaded yet');
         }
     });
 
-    // Debounce function
+    // Debounce function to prevent rapid multiple clicks
     function debounce(func, wait) {
         let timeout;
         return function (...args) {

@@ -15,7 +15,7 @@ body, html {
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;
-    flex-direction: column; /* Change to column to stack elements */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
@@ -75,25 +75,55 @@ button:hover {
 
 /* Style for the 'Get Random Cocktail' button with deep red/orange background and lighter hover effect */
 #randomCocktailButton {
-    background: linear-gradient(45deg, #b30000, #ff6600); /* Default background: deep red to bright orange */
-    background-size: 300%; /* Ensures a smoother color transition */
+    background: linear-gradient(45deg, #b30000, #ff6600);
+    background-size: 300%;
     width: 60%;
     border: none;
-    padding: 12px 20px; /* Pad ding for the button */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    margin-top: 20px; /* Margin above the button */
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 #randomCocktailButton i {
-    margin-right: 5px; /* Spacing between icon and text */
-    margin-left: 5x; /* Spacing between icon and text */
-    font-size: 30px; /* Icon size */
-    vertical-align: middle; /* Aligns icon vertically */
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 30px;
+    vertical-align: middle;
 }
 
 #randomCocktailButton:hover {
-    background: linear-gradient(45deg, #ff9966, #ffcc66); /* Lighter hover background: light orange to soft yellow */
-    background-size: 300%; /* Ensures a smoother color transition */
+    background: linear-gradient(45deg, #ff9966, #ffcc66);
+    background-size: 300%;
+}
+
+/* Loading spinner overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden; /* Hidden by default */
+}
+
+/* Spinner style */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
