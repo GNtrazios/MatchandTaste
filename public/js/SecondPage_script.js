@@ -50,15 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
             // Use debounce to prevent multiple clicks
             answerButton.addEventListener('click', debounce(() => {
                 const selectedAnswer = answerButton.getAttribute('data-answer');
-
+                /*
                 fetchWithRetry('/api/updateCounter', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ question, selectedAnswer })
-                })
-                .then(data => {
+                })*/
+                then(data => {
                     window.location.href = `NextPage.html?2=${encodeURIComponent(selectedAnswer)}`;
                 })
                 .catch(error => console.error('Error sending data:', error));

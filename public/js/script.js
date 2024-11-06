@@ -57,15 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Show the loading overlay
         loadingOverlay.style.visibility = 'visible';
-
+        /*
         fetchWithRetry('/api/updateCounter', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ question, selectedAnswer })
-        })
-        .then(() => {
+        })*/
+        then(() => {
             // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
         })
