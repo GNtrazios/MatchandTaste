@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ question, selectedAnswer })
-                })*/
-                then(data => {
-                    window.location.href = `NextPage.html?2=${encodeURIComponent(selectedAnswer)}`;
                 })
-                .catch(error => console.error('Error sending data:', error));
+                .then(data => {*/
+                    window.location.href = `NextPage.html?2=${encodeURIComponent(selectedAnswer)}`;
+                /*})
+                .catch(error => console.error('Error sending data:', error));*/
             }, 300));
 
             fragment.appendChild(answerButton);

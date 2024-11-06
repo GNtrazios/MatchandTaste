@@ -64,15 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ question, selectedAnswer })
-        })*/
-        then(() => {
+        })
+        then(() => {*/
             // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
-        })
+        /*})
         .catch(error => {
             console.error('Error updating counter:', error);
             loadingOverlay.style.visibility = 'hidden'; // Hide overlay on error
-        });
+        });*/
     }
 
     // Event listener for random cocktail button
