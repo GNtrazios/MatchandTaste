@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         then(() => {*/
             // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
+            loadingOverlay.style.visibility = 'hidden'; // Hide overlay on error
         /*})
         .catch(error => {
             console.error('Error updating counter:', error);
