@@ -1,6 +1,6 @@
 // /api/updateCounter.js
 
-const { Client } = require('pg');
+import { Client } from 'pg';
 
 // Connect to PostgreSQL
 const client = new Client({
@@ -13,7 +13,7 @@ const client = new Client({
 
 client.connect();
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).send({ message: 'Only POST requests allowed' });
     return;
