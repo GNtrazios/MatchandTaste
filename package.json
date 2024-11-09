@@ -18,6 +18,7 @@
     "express": "^4.19.2",
     "matchandtaste": "file:",
     "mysql": "^2.18.1",
-    "mysql2": "^3.11.0"
+    "mysql2": "^3.11.0",
+    "pg": "^8.13.1"
   }
 }

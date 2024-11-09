@@ -5,22 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadingOverlay = document.querySelector('.loading-overlay');
     let cocktails = [];
 
-    // Fetch function with retry logic
-    function fetchWithRetry(url, options = {}, retries = 3) {
-        return fetch(url, options).then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return response.json();
-        }).catch(error => {
-            if (retries > 0) return fetchWithRetry(url, options, retries - 1);
-            else {
-                console.error('Error fetching data:', error);
-                throw error;
-            }
-        });
-    }
-
     // Fetch cocktail data
-    fetchWithRetry('OubiCocktails.json')
+    fetch('OubiCocktails.json')
+        .then(response => response.json())
         .then(data => {
             cocktails = data;
             const FirstQuestion = Object.keys(data[0])[1];
@@ -52,28 +39,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Handle answer click
-    function handleAnswerClick(selectedAnswer) {
+    async function handleAnswerClick(selectedAnswer) {
         const question = questionElement.textContent;
 
         // Show the loading overlay
         loadingOverlay.style.visibility = 'visible';
-        /*
-        fetchWithRetry('/api/updateCounter', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ question, selectedAnswer })
-        })
-        then(() => {*/
+
+        try {
+            // Send the click data to the server asynchronously
+            await fetch('/api/updateCounter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question, answer: selectedAnswer })
+            });
+
             // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
-            loadingOverlay.style.visibility = 'hidden'; // Hide overlay on error
-        /*})
-        .catch(error => {
-            console.error('Error updating counter:', error);
-            loadingOverlay.style.visibility = 'hidden'; // Hide overlay on error
-        });*/
+        } catch (error) {
+            console.error('Error updating click count:', error);
+        } finally {
+            loadingOverlay.style.visibility = 'hidden';
+        }
     }
 
     // Event listener for random cocktail button
