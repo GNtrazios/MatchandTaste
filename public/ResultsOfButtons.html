@@ -7,52 +7,6 @@
     <link rel="stylesheet" href="css/Index_Styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
     <style>
-        /* Basic styling for the page */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* Sidebar styles */
-        .sidebar {
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            margin-top: 0;
-        }
-
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 10px 0;
-            text-decoration: none;
-        }
-
-        .sidebar a:hover {
-            background-color: #34495e;
-        }
-
-        /* Main content area */
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-        }
 
         /* Table styles */
         table {
@@ -62,13 +16,14 @@
         }
 
         table th, table td {
-            border: 1px solid #ddd;
+            border: 2px solid #080606;
             padding: 8px;
             text-align: left;
+            border-radius: 5px;
         }
 
         table th {
-            background-color: #f4f4f4;
+            background-color: rgb(233, 149, 128);
         }
 
         /* Table wrapper for scrollable effect */
@@ -83,50 +38,46 @@
         }
 
         .table-wrapper::-webkit-scrollbar-thumb {
-            background: #888;
             border-radius: 5px;
         }
 
         .table-wrapper::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #f6b4b4;
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Match 'n' Taste</h2>
-        <a href="index.html">Home</a>
-        <a href="#">Results</a>
-        <!-- Add other sidebar items here if needed -->
-    </div>
+    <div class="background">
+        <div class="box">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <h2>Results Table</h2>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
-        <h2>Results Table</h2>
-
-        <!-- Scrollable Table Wrapper -->
-        <div class="table-wrapper">
-            <table id="resultsTable">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Answer</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data will be inserted here dynamically -->
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="home-back-button-container">
-            <a href="index.html">
-                <button class="home-button">Home</button>
-            </a>
+                <!-- Scrollable Table Wrapper -->
+                <div class="table-wrapper">
+                    <table id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Answer</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="home-back-button-container">
+                    <a href="index.html">
+                        <button class="home-button">Home</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <script src="js/ResultsOfButtons_script.js"></script>
 </body>
