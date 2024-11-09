@@ -22,7 +22,10 @@ export default async (req, res) => {
 
   try {
     // Query to get all the data from the 'click_counts' table
-    const query = 'SELECT * FROM click_counts order by count desc';
+    const query = `SELECT * 
+                   FROM click_counts 
+                   order by count desc
+                   limit 10`;
 
     const result = await client.query(query);
 
