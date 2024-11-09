@@ -42,7 +42,5 @@ export default async (req, res) => {
   } catch (error) {
     console.error('Error updating count:', error);
     res.status(500).send({ message: 'Failed to update count' });
-  } finally {
-    client.end(); // Close the database connection
   }
 };

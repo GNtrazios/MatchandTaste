@@ -23,7 +23,7 @@ export default async (req, res) => {
   try {
     // Query to get all the data from the 'click_counts' table
     const query = 'SELECT * FROM click_counts order by count desc';
-    
+
     const result = await client.query(query);
 
     // Return the result as JSON
@@ -31,7 +31,5 @@ export default async (req, res) => {
   } catch (error) {
     console.error('Error fetching data:', error);
     res.status(500).send({ message: 'Failed to fetch data' });
-  } finally {
-    client.end(); // Close the database connection
   }
 };
