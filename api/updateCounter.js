@@ -7,7 +7,7 @@ const client = new Client({
   user: process.env.POSTGRES_USER,
   database: process.env.POSTGRES_DATABASE,
   password: process.env.POSTGRES_PASSWORD,
-  port: process.env.POSTGRES_PORT,  // Updated to POSTGRES_PORT
+  port: process.env.POSTGRES_PORT,
   ssl: {
     rejectUnauthorized: false, // This bypasses SSL certificate validation
   },
@@ -42,5 +42,7 @@ export default async (req, res) => {
   } catch (error) {
     console.error('Error updating count:', error);
     res.status(500).send({ message: 'Failed to update count' });
+  } finally {
+    client.end(); // Close the database connection
   }
 };
