@@ -1,13 +1,16 @@
 import pkg from 'pg';
 const { Client } = pkg;
 
-// Connect to PostgreSQL
+// Connect to PostgreSQL with SSL enabled
 const client = new Client({
   host: process.env.POSTGRES_HOST,
   user: process.env.POSTGRES_USER,
   database: process.env.POSTGRES_DATABASE,
   password: process.env.POSTGRES_PASSWORD,
-  port: process.env.POSTGRES_PORT,
+  port: process.env.POSTGRES_PORT,  // Updated to POSTGRES_PORT
+  ssl: {
+    rejectUnauthorized: false, // This bypasses SSL certificate validation
+  },
 });
 
 client.connect();
@@ -32,7 +35,6 @@ export default async (req, res) => {
     const result = await client.query(query, [question, answer]);
 
     if (result.rowCount === 0) {
-      // If no row was found to update
       res.status(404).send({ message: 'No matching record found to update' });
     } else {
       res.status(200).send({ message: 'Count updated successfully' });
