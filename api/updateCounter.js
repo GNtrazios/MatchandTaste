@@ -1,6 +1,5 @@
-// /api/updateCounter.js
-
-import { Client } from 'pg';
+import pkg from 'pg';
+const { Client } = pkg;
 
 // Connect to PostgreSQL
 const client = new Client({
@@ -8,7 +7,7 @@ const client = new Client({
   user: process.env.POSTGRES_USER,
   database: process.env.POSTGRES_DATABASE,
   password: process.env.POSTGRES_PASSWORD,
-  port: process.env.PG_PORT,
+  port: process.env.POSTGRES_PORT,
 });
 
 client.connect();
