@@ -24,8 +24,7 @@ export default async (req, res) => {
     // Query to get all the data from the 'click_counts' table
     const query = `SELECT * 
                    FROM click_counts 
-                   order by count desc
-                   limit 10`;
+                   order by count desc`;
 
     const result = await client.query(query);
 
