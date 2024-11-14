@@ -78,6 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Cocktails data not loaded yet');
         }
     });
+    
+    // Check for specific 'user' URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user');
+
+    // Show the "Show Results" button only for specificuser
+    if (userId === 'specialUser') {  // Replace 'specialUser' with the specific user identifier
+        document.getElementById('specialButton').style.display = 'inline-block';
+    }
 
     // Debounce function to prevent rapid multiple clicks
     function debounce(func, wait) {

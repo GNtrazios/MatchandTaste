@@ -98,6 +98,24 @@ button:hover {
     background-size: 300%;
 }
 
+#specialButton {
+    background: #ef1f1f;
+    display: none; /* Hidden by default */
+    background-size: 100%;
+    width: 60%;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#specialButton:hover {
+    background: #ef5e5e;
+    background-size: 300%;
+}
+
 /* Loading spinner overlay */
 .loading-overlay {
     position: fixed;
