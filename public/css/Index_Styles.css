@@ -10,7 +10,7 @@ body, html {
 /* Style the container with the background image */
 .background {
     background-image: url('../images/Cocktail.jpeg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
@@ -24,7 +24,7 @@ body, html {
 
 .box {
     background-color: rgba(0, 0, 0, 0.8);
-    border: 2px solid #ccc;
+    border: 2px solid #c47d7d;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -58,7 +58,7 @@ body, html {
 }
 
 button {
-    background-color: rgb(233, 149, 128);
+    background-color: rgb(209, 109, 85);
     border: none;
     padding: 10px;
     border-radius: 10px;
@@ -66,16 +66,16 @@ button {
     font-size: 16px;
     margin: 5px 0;
     width: 60%;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 button:hover {
-    background-color: #f6b4b4;
+    background-color: #d37979;
 }
 
 /* Style for the 'Get Random Cocktail' button with deep red/orange background and lighter hover effect */
 #randomCocktailButton {
-    background: #ef1f1f;
+    background: #8e0606;
     background-size: 100%;
     width: 60%;
     border: none;
