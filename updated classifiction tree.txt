@@ -1,0 +1,68 @@
+└── What kind of experience are you looking for?
+    ├── A) Something sweet...
+    │   ├── What type of sweetness are you looking for?
+    │   │   ├── A) Tropical & Exotic
+    │   │   │   ├── What do you think of pineapple?
+    │   │   │   │   ├── A) Love it!
+    │   │   │   │   │   ├── What are you in the mood for?
+    │   │   │   │   │   │   ├── A) Fruity Gin-based Cocktail
+    │   │   │   │   │   │   │   └── Result: Mango Tango 
+    │   │   │   │   │   │   ├── B) Bubbling spritz with melon
+    │   │   │   │   │   │   │   └── Result: Caribbean Breeze 
+    │   │   │   │   ├── B) Not a fan
+    │   │   │   │   │   ├── What are you in the mood for?
+    │   │   │   │   │   │   ├── A) Classic-remake with Rum
+    │   │   │   │   │   │   │   └── Result: Dragons Zombie 
+    │   │   │   │   │   │   ├── B) Bubbling spritz with Banana
+    │   │   │   │   │   │   │   └── Result: Monkeys Paradise 
+    │   │   ├── B) Berry-Focused
+    │   │   │   ├── What’s your guilty pleasure?
+    │   │   │   │   ├── A) Strawberry-Dominant
+    │   │   │   │   │   └── Result: Fragolas Spritz
+    │   │   │   │   ├── B) Raspberries & Passion Fruit
+    │   │   │   │   │   └── Result: The Elixir
+    │   │   ├── C) Rich & Sweet
+    │   │   │   ├── What’s your go-to drink?
+    │   │   │   │   ├── A) Rum
+    │   │   │   │   │   └── Result: Bahama Mama
+    │   │   │   │   ├── B) Masticha
+    │   │   │   │   │   └── Result: Watermelon Oasis
+    │   │   │   │   ├── C) Tequila
+    │   │   │   │   │   └── Result: Sweet Amigo
+    ├── B) Light and Refreshing
+    │   ├── What is your preferred alcohol base?
+    │   │   ├── A) Gin
+    │   │   │   └── Result: The Gardener
+    │   │   ├── B) Prosecco
+    │   │   │   ├── Which fruit flavor do you prefer?
+    │   │   │   │   ├── A) Peach-Flavored
+    │   │   │   │   │   └── Result: Picasso
+    │   │   │   │   ├── B) Banana-Flavored
+    │   │   │   │   │   └── Result: Monkeys Paradise
+    │   │   ├── C) Moschato D'asti
+    │   │   │   ├── What excites your taste?
+    │   │   │   │   ├── A) Strawberry Delight
+    │   │   │   │   │   └── Result: Fragolas Spritz
+    │   │   │   │   ├── B) Tropical Vibe
+    │   │   │   │   │   └── Result: Caribbean Breeze
+    ├── C) Intense and Complex
+    │   ├── What flavor seems exciting?
+    │   │   ├── A) Old favorites, remade!
+    │   │   │   ├── What’s your ideal combo?
+    │   │   │   │   ├── A) Bitter with Gin
+    │   │   │   │   │   └── Result: Aegean Negroni
+    │   │   │   │   ├── B) Rum-based with tropical sweetness
+    │   │   │   │   │   └── Result: Dragons Zombie 
+    │   │   ├── B) Smokey & Spicy 
+    │   │   │   ├── What’s your perfect match?
+    │   │   │   │   ├── A) Spicy with Tequila 
+    │   │   │   │   │   └── Result: Spicy Columbus 
+    │   │   │   │   ├── B) Bitter-Sweet and Smokey
+    │   │   │   │   │   └── Result: Smokey Aperol
+    │   │   ├── C) Sweet Meets Salty
+    │   │   │   ├── Feeling adventurous?
+    │   │   │   │   ├── A) Yes, surprise me!
+    │   │   │   │   │   └── Result: Drunk Popcorn
+    │   │   │   │   ├── B) No, keep it simple
+    │   │   │   │   │   └── Result: Sweet Amigo
+
