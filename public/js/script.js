@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
-    const InitialPageButtonsContainer = document.getElementById('InitialPage-buttons-container');
+    const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
     const loadingOverlay = document.querySelector('.loading-overlay');
     let cocktails = [];
@@ -10,90 +10,67 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             cocktails = data;
-            const FirstQuestion = Object.keys(data[0])[1];
-            const possibleAnswers = [...new Set(data.map(cocktail => cocktail[FirstQuestion]))];
+            const question = Object.keys(data[0])[1];
+            const answers = [...new Set(data.map(c => c[question]))];
 
-            // Display the first question and create answer buttons
-            questionElement.textContent = FirstQuestion;
-            createAnswerButtons(possibleAnswers);
+            // Set question and answers
+            questionElement.textContent = question;
+            createAnswerButtons(answers);
         })
-        .catch(error => console.error('Error loading cocktails data:', error));
+        .catch(err => logError('Error loading cocktail data', err));
 
-    // Create answer buttons
     function createAnswerButtons(answers) {
-        const fragment = document.createDocumentFragment();
+        buttonsContainer.innerHTML = answers.map(answer =>
+            `<button class="answer-btn" data-answer="${answer}">${answer}</button>`
+        ).join('');
 
-        answers.forEach(answer => {
-            const answerButton = document.createElement('button');
-            answerButton.textContent = answer;
-            answerButton.className = 'answer-btn';
-            answerButton.setAttribute('data-answer', answer);
-
-            // Use debounce to prevent multiple clicks
-            answerButton.addEventListener('click', debounce(() => handleAnswerClick(answer), 300));
-
-            fragment.appendChild(answerButton);
-        });
-
-        InitialPageButtonsContainer.appendChild(fragment);
+        buttonsContainer.querySelectorAll('.answer-btn').forEach(btn =>
+            btn.addEventListener('click', debounce(handleAnswerClick, 300))
+        );
     }
 
-    // Handle answer click
-    async function handleAnswerClick(selectedAnswer) {
-        const question = questionElement.textContent;
-
-        // Show the loading overlay
+    async function handleAnswerClick(e) {
+        const selectedAnswer = e.target.getAttribute('data-answer');
         loadingOverlay.style.visibility = 'visible';
 
         try {
-            // Send the click data to the server asynchronously
             await fetch('/api/updateCounter', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ question, answer: selectedAnswer })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: questionElement.textContent, answer: selectedAnswer })
             });
 
-            // Redirect to the second page with selected answer as query parameter
             window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
-        } catch (error) {
-            console.error('Error updating click count:', error);
+        } catch (err) {
+            logError('Error updating click counter', err);
         } finally {
             loadingOverlay.style.visibility = 'hidden';
         }
     }
 
-    // Event listener for random cocktail button
     randomCocktailButton.addEventListener("click", () => {
-        if (cocktails.length > 0) {
+        if (cocktails.length) {
             const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
-
-            // Show the loading overlay
             loadingOverlay.style.visibility = 'visible';
-
-            // Redirect to the result page with random cocktail name as query parameter
             window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
-        } else {
-            console.error('Cocktails data not loaded yet');
         }
     });
-    
-    // Check for specific 'user' URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('user');
 
-    // Show the "Show Results" button only for specificuser
-    if (userId === 'specialUser') {  // Replace 'specialUser' with the specific user identifier
+    const userId = new URLSearchParams(window.location.search).get('user');
+    if (userId === 'specialUser') {
         document.getElementById('specialButton').style.display = 'inline-block';
     }
 
-    // Debounce function to prevent rapid multiple clicks
-    function debounce(func, wait) {
+    function debounce(func, delay) {
         let timeout;
         return function (...args) {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
+            timeout = setTimeout(() => func.apply(this, args), delay);
         };
+    }
+
+    // Logging helper for Vercel
+    function logError(message, error) {
+        console.log(`[Error] ${message}`, { error: error?.message || error });
     }
 });

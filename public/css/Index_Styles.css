@@ -1,4 +1,4 @@
-/* Apply styles to the body to make sure the background image covers the entire page */
+/* Reset default styles for body and html */
 body, html {
     margin: 0;
     padding: 0;
@@ -7,21 +7,19 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-/* Style the container with the background image */
+/* Background container */
 .background {
-    background-image: url('../images/Cocktail.jpeg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('../images/Cocktail.jpeg') no-repeat center / contain;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
     text-align: center;
+    background-color: black;
 }
 
+/* Content box styling */
 .box {
     background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid #c47d7d;
@@ -32,7 +30,6 @@ body, html {
     max-width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
     transition: height 0.3s;
@@ -42,13 +39,14 @@ body, html {
     height: auto;
 }
 
+/* Question text */
 .question {
-    color: white;
     font-size: 30px;
-    margin-bottom: 25px;
-    margin-top: 10px;
+    margin: 10px 0 25px;
+    color: white;
 }
 
+/* Buttons container */
 .button-container {
     display: flex;
     flex-direction: column;
@@ -57,6 +55,7 @@ body, html {
     margin-bottom: 20px;
 }
 
+/* General button styles */
 button {
     background-color: rgb(209, 109, 85);
     border: none;
@@ -66,54 +65,38 @@ button {
     font-size: 16px;
     margin: 5px 0;
     width: 60%;
-    color: rgb(0, 0, 0);
+    color: black;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #d37979;
 }
 
-/* Style for the 'Get Random Cocktail' button with deep red/orange background and lighter hover effect */
-#randomCocktailButton {
-    background: #8e0606;
-    background-size: 100%;
+/* Specific button styles */
+#randomCocktailButton, #specialButton {
     width: 60%;
-    border: none;
     padding: 12px 20px;
     border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
     margin-top: 20px;
+    background: #8e0606;
+    transition: background-color 0.3s ease;
 }
 
 #randomCocktailButton i {
-    margin-right: 2px;
-    margin-left: 2px;
+    margin: 0 2px;
     font-size: 30px;
     vertical-align: middle;
 }
 
-#randomCocktailButton:hover {
+#randomCocktailButton:hover, #specialButton:hover {
     background: #ef5e5e;
-    background-size: 300%;
 }
 
 #specialButton {
-    background: #ef1f1f;
-    display: none; /* Hidden by default */
-    background-size: 100%;
-    width: 60%;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-#specialButton:hover {
-    background: #ef5e5e;
-    background-size: 300%;
+    display: none; /* Initially hidden */
 }
 
 /* Loading spinner overlay */
@@ -123,15 +106,15 @@ button:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.1); /* Almost transparent white background */
+    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    visibility: hidden; /* Hidden by default */
+    visibility: hidden;
 }
 
-/* Spinner style */
+/* Spinner animation */
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-top: 4px solid #333;
