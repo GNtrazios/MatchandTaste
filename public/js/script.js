@@ -3,35 +3,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
     const loadingOverlay = document.querySelector('.loading-overlay');
+    const specialButton = document.getElementById('specialButton');
+    const userId = new URLSearchParams(window.location.search).get('user');
     let cocktails = [];
 
-    // Fetch cocktail data
-    fetch('OubiCocktails.json')
-        .then(response => response.json())
-        .then(data => {
-            cocktails = data;
-            const question = Object.keys(data[0])[1];
-            const answers = [...new Set(data.map(c => c[question]))];
+    // Initialize the page
+    init();
 
-            // Set question and answers
-            questionElement.textContent = question;
-            createAnswerButtons(answers);
-        })
-        .catch(err => logError('Error loading cocktail data', err));
+    function init() {
+        // Display special button for specific users
+        if (userId === 'specialUser') {
+            specialButton.style.display = 'inline-block';
+        }
 
-    function createAnswerButtons(answers) {
-        buttonsContainer.innerHTML = answers.map(answer =>
-            `<button class="answer-btn" data-answer="${answer}">${answer}</button>`
-        ).join('');
-
-        buttonsContainer.querySelectorAll('.answer-btn').forEach(btn =>
-            btn.addEventListener('click', debounce(handleAnswerClick, 300))
-        );
+        // Fetch cocktail data and populate question and answers
+        fetch('OubiCocktails.json')
+            .then(response => response.json())
+            .then(data => handleCocktailData(data))
+            .catch(err => logError('Error loading cocktail data', err));
     }
 
-    async function handleAnswerClick(e) {
-        const selectedAnswer = e.target.getAttribute('data-answer');
-        loadingOverlay.style.visibility = 'visible';
+    function handleCocktailData(data) {
+        cocktails = data;
+        const question = Object.keys(data[0])[1];
+        const answers = [...new Set(data.map(c => c[question]))];
+
+        questionElement.textContent = question;
+        createAnswerButtons(answers);
+    }
+
+    // Create answer buttons dynamically
+    function createAnswerButtons(answers) {
+        buttonsContainer.innerHTML = ''; // Clear any existing buttons
+
+        answers.forEach(answer => {
+            const button = createButton(answer);
+            buttonsContainer.appendChild(button);
+        });
+    }
+
+    // Create a single answer button
+    function createButton(answer) {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.className = 'answer-btn';
+        button.dataset.answer = answer;
+
+        button.addEventListener('click', debounce(handleAnswerClick, 300));
+        return button;
+    }
+
+    // Handle answer button click
+    async function handleAnswerClick(event) {
+        const selectedAnswer = event.target.dataset.answer;
+        toggleLoading(true);
 
         try {
             await fetch('/api/updateCounter', {
@@ -40,37 +65,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ question: questionElement.textContent, answer: selectedAnswer })
             });
 
-            window.location.href = `SecondPage.html?FirstQuestionAnswer=${selectedAnswer}`;
+            window.location.href = `SecondPage.html?FirstQuestionAnswer=${encodeURIComponent(selectedAnswer)}`;
         } catch (err) {
             logError('Error updating click counter', err);
         } finally {
-            loadingOverlay.style.visibility = 'hidden';
+            toggleLoading(false);
         }
     }
 
+    // Handle random cocktail button click
     randomCocktailButton.addEventListener("click", () => {
         if (cocktails.length) {
             const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
-            loadingOverlay.style.visibility = 'visible';
-            window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
+            redirectToResultPage(randomCocktail.name);
         }
     });
 
-    const userId = new URLSearchParams(window.location.search).get('user');
-    if (userId === 'specialUser') {
-        document.getElementById('specialButton').style.display = 'inline-block';
+    // Redirect to the result page
+    function redirectToResultPage(cocktailName) {
+        toggleLoading(true);
+        window.location.href = `Result.html?name=${encodeURIComponent(cocktailName)}`;
     }
 
+    // Toggle loading overlay visibility
+    function toggleLoading(show) {
+        loadingOverlay.style.visibility = show ? 'visible' : 'hidden';
+    }
+
+    // Debounce function to limit rapid function execution
     function debounce(func, delay) {
         let timeout;
-        return function (...args) {
+        return (...args) => {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), delay);
+            timeout = setTimeout(() => func(...args), delay);
         };
     }
 
-    // Logging helper for Vercel
+    // Logging helper
     function logError(message, error) {
-        console.log(`[Error] ${message}`, { error: error?.message || error });
+        console.error(`[Error] ${message}`, { error: error?.message || error });
     }
 });
