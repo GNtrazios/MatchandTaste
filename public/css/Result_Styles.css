@@ -1,4 +1,4 @@
-/* Apply styles to the body to make sure the background image covers the entire page */
+/* Reset default styles for body and html */
 body, html {
     margin: 0;
     padding: 0;
@@ -7,23 +7,22 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-/* Style the container with the background image */
+/* Background container */
 .background {
-    background-image: url('../images/Cocktail.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('../images/Cocktail.jpeg') no-repeat center / cover;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
     text-align: center;
+    background-color: black;
 }
 
+/* Content box styling */
 .box {
     background-color: rgba(0, 0, 0, 0.8);
-    border: 2px solid #ccc;
+    border: 2px solid #c47d7d;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +30,6 @@ body, html {
     max-width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
     transition: height 0.3s;
@@ -41,34 +39,33 @@ body, html {
     height: auto;
 }
 
+/* Question text */
 .question {
-    color: white;
     font-size: 30px;
-    margin-bottom: 25px;
-    margin-top: 10px;
+    margin: 10px 0 25px;
+    color: white;
 }
 
-.button-container {
+/* Style for Home and Back buttons container */
+.home-back-button-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
+    gap: 10px; /* Space between the buttons */
+    justify-content: center;
 }
 
-button.home-button {
+.home-button, .back-button {
     background-color: #808080;
-    border: none;
     color: white;
     padding: 10px;
     font-size: 16px;
     width: 100%;
-    margin-bottom: 10px;
-    cursor: pointer;
+    border: none;
     border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
 }
 
-button.home-button:hover {
+.home-button:hover, .back-button:hover {
     background-color: #a9a9a9;
 }
 
@@ -85,4 +82,9 @@ button.home-button:hover {
     text-align: center;
     font-size: 1rem;
     color: white;
+}
+
+.cocktail-name{
+    color: white;
+    text-align: center;
 }
