@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match 'n' Taste</title>
     <link rel="stylesheet" href="css/NextPage_Styles.css">
+    
+    <!-- Prefetch links for faster loading of next pages -->
+    <link rel="prefetch" href="index.html">
+    <link rel="prefetch" href="NextPage.html">
 </head>
 <body>
     <div class="background">
@@ -16,16 +20,16 @@
                 <a href="index.html">
                     <button class="home-button">Home</button>
                 </a>
-                <button class="back-button" onclick="goBack()">Back</button>
+                <button class="back-button" onclick="window.history.back()">Back</button>
             </div>
         </div>
     </div>
+
+    <!-- Loading Spinner Overlay -->
+    <div class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
     <script src="js/NextPage_script.js"></script>
-    <script>
-        // JavaScript function to go back to the previous page
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>

@@ -1,88 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
-    const NextPageButtonsContainer = document.getElementById('NextPage-Question-buttons-container');
+    const nextPageButtonsContainer = document.getElementById('NextPage-Question-buttons-container');
+    const loadingOverlay = document.querySelector('.loading-overlay');
 
-    // Get the first URL parameter key and its corresponding value
     const urlParams = new URLSearchParams(window.location.search);
-    const firstParam = [...urlParams.keys()][0]; 
-    const previousAnswer = urlParams.get(firstParam);
-    const result = parseInt(firstParam, 10);
+    const currentQuestionIndex = parseInt([...urlParams.keys()][0], 10);
+    const previousAnswer = urlParams.get(currentQuestionIndex);
 
-    // Improved fetch with retry logic, logs errors to console
-    function fetchWithRetry(url, options = {}, retries = 3) {
-        return fetch(url, options).then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return response.json();
-        }).catch(error => {
-            if (retries > 0) return fetchWithRetry(url, options, retries - 1);
-            else {
-                console.error('Error fetching data:', error);
-                throw error;
-            }
+    // Fetch and process cocktail data
+    fetch('OubiCocktails.json')
+        .then(response => response.json())
+        .then(data => handleCocktailData(data))
+        .catch(err => logError('Error loading cocktail data', err));
+
+    // Handle cocktail data and set up the next question
+    function handleCocktailData(data) {
+        const filteredData = data.filter(item => {
+            const values = Object.values(item);
+            return values[currentQuestionIndex] === previousAnswer;
+        });
+
+        const nextQuestionKey = Object.keys(filteredData[0] || {})[currentQuestionIndex + 1];
+
+        if (nextQuestionKey && nextQuestionKey !== 'description') {
+            const possibleAnswers = [...new Set(filteredData.map(item => item[nextQuestionKey]))];
+            questionElement.textContent = nextQuestionKey;
+            populateAnswerButtons(possibleAnswers, nextQuestionKey);
+        } else {
+            // Redirect to the results page if there are no more questions
+            window.location.href = `Result.html?name=${encodeURIComponent(filteredData[0]?.name)}`;
+        }
+    }
+
+    // Populate answer buttons dynamically
+    function populateAnswerButtons(answers, question) {
+        nextPageButtonsContainer.innerHTML = ''; // Clear any existing buttons
+        answers.filter(Boolean).forEach(answer => {
+            const answerButton = createButton(answer, question);
+            nextPageButtonsContainer.appendChild(answerButton);
         });
     }
 
-    // Fetch cocktail data
-    fetchWithRetry('OubiCocktails.json')
-        .then(data => { 
-            const filteredData = data.filter(item => {
-                const values = Object.values(item);
-                return values[result] === previousAnswer;
+    // Create an answer button with event listener
+    function createButton(answer, question) {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.className = 'answer-btn';
+        button.dataset.answer = answer;
+
+        button.addEventListener('click', debounce(() => handleAnswerClick(question, answer), 300));
+        return button;
+    }
+
+    // Handle button click and redirect to the next page
+    async function handleAnswerClick(question, selectedAnswer) {
+        toggleLoading(true);
+
+        try {
+            await fetch('/api/updateCounter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question, answer: selectedAnswer })
             });
 
-            const NextQuestion = Object.keys(filteredData[0] || {})[result + 1];
-
-            if (NextQuestion && NextQuestion !== 'description') {
-                const possibleAnswers = [...new Set(filteredData.map(item => item[NextQuestion]))];
-                questionElement.textContent = NextQuestion;
-                createAnswerButtons(possibleAnswers, NextQuestion);
-            } else {
-                window.location.href = `Result.html?name=${encodeURIComponent(filteredData[0].name)}`;
-            }
-        })
-        .catch(error => console.error('Error fetching data:', error));
-
-    // Function to create answer buttons
-    function createAnswerButtons(possibleAnswers, question) {
-        NextPageButtonsContainer.innerHTML = '';
-        const validAnswers = possibleAnswers.filter(Boolean);
-
-        const fragment = document.createDocumentFragment();
-        validAnswers.forEach(answer => {
-            const answerButton = document.createElement('button');
-            answerButton.textContent = answer;
-            answerButton.className = 'answer-btn';
-            answerButton.setAttribute('data-answer', answer);
-            
-            // Use debounce to prevent multiple clicks
-            answerButton.addEventListener('click', debounce(() => {
-                const selectedAnswer = answerButton.getAttribute('data-answer');
-                /*
-                fetchWithRetry('/api/updateCounter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ question, selectedAnswer })
-                })
-                .then(data => {*/
-                    window.location.href = `NextPage.html?${encodeURIComponent(result + 1)}=${encodeURIComponent(selectedAnswer)}`;
-                /*})
-                .catch(error => console.error('Error sending data:', error));*/
-            }, 300));
-
-            fragment.appendChild(answerButton);
-        });
-
-        NextPageButtonsContainer.appendChild(fragment);
+            window.location.href = `NextPage.html?${encodeURIComponent(currentQuestionIndex + 1)}=${encodeURIComponent(selectedAnswer)}`;
+        } catch (err) {
+            logError('Error updating click counter', err);
+        } finally {
+            toggleLoading(false);
+        }
     }
 
-    // Debounce function
-    function debounce(func, wait) {
+    // Show or hide the loading overlay
+    function toggleLoading(show) {
+        loadingOverlay.style.visibility = show ? 'visible' : 'hidden';
+    }
+
+    // Debounce function to limit rapid function execution
+    function debounce(func, delay) {
         let timeout;
-        return function (...args) {
+        return (...args) => {
             clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
+            timeout = setTimeout(() => func(...args), delay);
         };
+    }
+
+    // Error logging function
+    function logError(message, error) {
+        console.error(`[Error] ${message}`, { error: error?.message || error });
     }
 });
