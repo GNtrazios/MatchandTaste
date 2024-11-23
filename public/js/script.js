@@ -123,18 +123,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Updated logError function
     function logError(message, error) {
-        alert("logError function invoked"); // Log the start of the function
+        alert("logError function invoked");
     
         console.error(`[Error] ${message}`, { error: error?.message || error });
     
         // Log preparation of email parameters
-        alert("Preparing email parameters...");
         const templateParams = {
             error_message: message,
             error_details: error?.message || JSON.stringify(error),
             timestamp: new Date().toISOString(),
         };
-        alert("Email parameters prepared:", templateParams);
+        alert(`error_message: ${message}`);
+        alert(`error_details: ${error_details}`);
+        alert(`timestamp: ${timestamp}`);
     
         // Log before sending the email
         alert("Attempting to send error notification email...");
@@ -142,10 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
             .then(
                 (response) => {
-                    alert("Error notification email sent successfully.", response.status, response.text); // Log success response
+                    alert("Error notification email sent successfully.", response.status, response.text);
                 },
                 (err) => {
-                    console.error("Failed to send error notification email:", err); // Log failure response
+                    alert("Failed...");
+                    console.error("Failed to send error notification email:", err);
                 }
             );
     
