@@ -3,17 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const EMAILJS_TEMPLATE_ID = 'template_xejeurx';
     const EMAILJS_USER_ID = 'JGZjmSK5cu1LprSV5';
 
-    // Initialize EmailJS
-    if (EMAILJS_USER_ID) {
-        console.log('EmailJS Initialized Successfully');
-        emailjs.init(EMAILJS_USER_ID);
-    } else {
-        console.error('EmailJS User ID is not defined.');
-    }
-    
     const questionElement = document.querySelector('.question');
     const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
+    const throwErrorButton = document.getElementById('throwErrorButton');
     const loadingOverlay = document.querySelector('.loading-overlay');
     const specialButton = document.getElementById('specialButton');
     const userId = new URLSearchParams(window.location.search).get('user');
@@ -26,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Display special button for specific users
         if (userId === 'specialUser') {
             specialButton.style.display = 'inline-block';
+        }
+
+        // Initialize EmailJS
+        if (EMAILJS_USER_ID) {
+            console.log('EmailJS Initialized Successfully');
+            emailjs.init(EMAILJS_USER_ID);
+        } else {
+            console.error('EmailJS User ID is not defined.');
         }
 
         // Fetch cocktail data and populate question and answers
@@ -89,15 +90,20 @@ document.addEventListener("DOMContentLoaded", () => {
     randomCocktailButton.addEventListener("click", () => {
         if (cocktails.length) {
             const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
-            redirectToResultPage(randomCocktail.name);
+            toggleLoading(true);
+            window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
         }
     });
 
-    // Redirect to the result page
-    function redirectToResultPage(cocktailName) {
+    // Handle Error Simulation button click
+    throwErrorButton.addEventListener("click", () => {
         toggleLoading(true);
-        window.location.href = `Result.html?name=${encodeURIComponent(cocktailName)}`;
-    }
+        try {
+            throw new Error('Test error triggered by Throw Error button');
+        } catch (err) {
+            logError('Manually triggered error', err);
+        }
+    });
 
     // Toggle loading overlay visibility
     function toggleLoading(show) {
