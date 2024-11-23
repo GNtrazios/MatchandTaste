@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Initialize EmailJS
         if (EMAILJS_USER_ID) {
-            alert("EmailJS Initialized Successfully");
             emailjs.init(EMAILJS_USER_ID);
         } else {
             console.error('EmailJS User ID is not defined.');
@@ -122,9 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Updated logError function
-    function logError(message, error) {
-        alert("logError function invoked");
-    
+    function logError(message, error) {    
         console.error(`[Error] ${message}`, { error: error?.message || error });
     
         // Log preparation of email parameters
@@ -133,9 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
             error_details: error?.message || JSON.stringify(error),
             timestamp: new Date().toISOString(),
         };
-        alert(`error_message: ${message}`);
-        alert(`error_details: ${error_details}`);
-        alert(`timestamp: ${timestamp}`);
+
+        alert(`templateParams: ${JSON.stringify(templateParams, null, 2)}`);
     
         // Log before sending the email
         alert("Attempting to send error notification email...");
@@ -143,15 +139,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
             .then(
                 (response) => {
-                    alert("Error notification email sent successfully.", response.status, response.text);
+                    alert(
+                        `✅ Error notification email sent successfully.\n` +
+                        `Status: ${response.status}\n` +
+                        `Response: ${response.text}`
+                    );
                 },
                 (err) => {
-                    alert("Failed...");
+                    alert(
+                        `❌ Failed to send error notification email.\n` +
+                        `Error: ${JSON.stringify(err)}`
+                    );
                     console.error("Failed to send error notification email:", err);
                 }
             );
-    
-        // Log end of function
-        alert("logError function execution completed.");
     }    
 });
