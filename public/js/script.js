@@ -4,8 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
     // Initialize EmailJS
-    emailjs.init(EMAILJS_USER_ID);
-
+    if (EMAILJS_USER_ID) {
+        emailjs.init(EMAILJS_USER_ID);
+    } else {
+        console.error('EmailJS User ID is not defined.');
+    }
+    
     const questionElement = document.querySelector('.question');
     const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
@@ -123,26 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
         emailjs
             .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
             .then(
-                response => {
+                (response) => {
                     console.log('Error notification email sent successfully.', response.status, response.text);
                 },
-                err => {
+                (err) => {
                     console.error('Failed to send error notification email:', err);
                 }
             );
     }
-
-    // Button to trigger an error
-    const throwErrorButton = document.createElement('button');
-    throwErrorButton.textContent = 'Throw Error';
-    throwErrorButton.className = 'error-btn';
-    throwErrorButton.addEventListener('click', () => {
-        try {
-            throw new Error('Test error triggered by Throw Error button');
-        } catch (err) {
-            logError('Manually triggered error', err);
-        }
-    });
-    document.body.appendChild(throwErrorButton);
 });
-
