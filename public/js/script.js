@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize EmailJS
     if (EMAILJS_USER_ID) {
+        console.log('EmailJS Initialized Successfully');
         emailjs.init(EMAILJS_USER_ID);
     } else {
         console.error('EmailJS User ID is not defined.');
@@ -114,25 +115,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Updated logError function
     function logError(message, error) {
+        console.log("logError function invoked"); // Log the start of the function
+    
         console.error(`[Error] ${message}`, { error: error?.message || error });
-
-        // Prepare email parameters
+    
+        // Log preparation of email parameters
+        console.log("Preparing email parameters...");
         const templateParams = {
             error_message: message,
             error_details: error?.message || JSON.stringify(error),
             timestamp: new Date().toISOString(),
         };
-
-        // Send email using EmailJS
+        console.log("Email parameters prepared:", templateParams);
+    
+        // Log before sending the email
+        console.log("Attempting to send error notification email...");
         emailjs
             .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
             .then(
                 (response) => {
-                    console.log('Error notification email sent successfully.', response.status, response.text);
+                    console.log("Error notification email sent successfully.", response.status, response.text); // Log success response
                 },
                 (err) => {
-                    console.error('Failed to send error notification email:', err);
+                    console.error("Failed to send error notification email:", err); // Log failure response
                 }
             );
-    }
+    
+        // Log end of function
+        console.log("logError function execution completed.");
+    }    
 });
