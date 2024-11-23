@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
+
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_USER_ID);
+
     const questionElement = document.querySelector('.question');
     const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
-    const throwErrorButton = document.getElementById('throwErrorButton'); // New button
     const loadingOverlay = document.querySelector('.loading-overlay');
     const specialButton = document.getElementById('specialButton');
     const userId = new URLSearchParams(window.location.search).get('user');
@@ -82,15 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // New button click event to throw an error
-    throwErrorButton.addEventListener("click", () => {
-        try {
-            throw new Error("This is a simulated error triggered by the Throw Error button.");
-        } catch (err) {
-            logError("Simulated error occurred", err);
-        }
-    });
-
     // Redirect to the result page
     function redirectToResultPage(cocktailName) {
         toggleLoading(true);
@@ -124,14 +121,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Send email using EmailJS
         emailjs
-            .send('service_252rszn', 'template_xejeurx', templateParams)
+            .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
             .then(
-                (response) => {
+                response => {
                     console.log('Error notification email sent successfully.', response.status, response.text);
                 },
-                (err) => {
+                err => {
                     console.error('Failed to send error notification email:', err);
                 }
             );
     }
+
+    // Button to trigger an error
+    const throwErrorButton = document.createElement('button');
+    throwErrorButton.textContent = 'Throw Error';
+    throwErrorButton.className = 'error-btn';
+    throwErrorButton.addEventListener('click', () => {
+        try {
+            throw new Error('Test error triggered by Throw Error button');
+        } catch (err) {
+            logError('Manually triggered error', err);
+        }
+    });
+    document.body.appendChild(throwErrorButton);
 });
+

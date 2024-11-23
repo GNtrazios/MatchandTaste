@@ -16,11 +16,19 @@
     <script defer src="/_vercel/insights/script.js"></script>
     -->
     <!-- End of Vercel Analytics Script -->
-    
+
     <!-- EmailJS Script -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        emailjs.init('JGZjmSK5cu1LprSV5'); <!-- Replace with your EmailJS User ID -->
+        // Initialize EmailJS (User ID from environment variables)
+        window.addEventListener('DOMContentLoaded', () => {
+            const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID; // Environment variable injected by Vercel
+            if (EMAILJS_USER_ID) {
+                emailjs.init(EMAILJS_USER_ID);
+            } else {
+                console.error('Error: EMAILJS_USER_ID is not defined.');
+            }
+        });
     </script>
 
     <!-- Prefetch links for faster loading of next pages -->
@@ -39,9 +47,6 @@
         <a href="ResultsOfButtons.html">
             <button id="specialButton" class="centered-button">Show Results</button>
         </a>
-        <button id="throwErrorButton" class="centered-button error-button">
-            Throw an Error
-        </button>
     </div>
 
     <!-- Loading Spinner Overlay -->
@@ -49,6 +54,12 @@
         <div class="spinner"></div>
     </div>
 
+    <!-- Button to trigger an error -->
+    <div class="error-container">
+        <button id="throwErrorButton" class="centered-button error-btn">Throw Error</button>
+    </div>
+
+    <!-- Main JavaScript -->
     <script defer src="js/script.js"></script>
 </body>
 </html>
