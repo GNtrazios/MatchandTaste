@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const questionElement = document.querySelector('.question');
     const buttonsContainer = document.getElementById('InitialPage-buttons-container');
     const randomCocktailButton = document.getElementById('randomCocktailButton');
+    const throwErrorButton = document.getElementById('throwErrorButton'); // New button
     const loadingOverlay = document.querySelector('.loading-overlay');
     const specialButton = document.getElementById('specialButton');
     const userId = new URLSearchParams(window.location.search).get('user');
@@ -81,6 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // New button click event to throw an error
+    throwErrorButton.addEventListener("click", () => {
+        try {
+            throw new Error("This is a simulated error triggered by the Throw Error button.");
+        } catch (err) {
+            logError("Simulated error occurred", err);
+        }
+    });
+
     // Redirect to the result page
     function redirectToResultPage(cocktailName) {
         toggleLoading(true);
@@ -101,8 +111,27 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // Logging helper
+    // Updated logError function
     function logError(message, error) {
         console.error(`[Error] ${message}`, { error: error?.message || error });
+
+        // Prepare email parameters
+        const templateParams = {
+            error_message: message,
+            error_details: error?.message || JSON.stringify(error),
+            timestamp: new Date().toISOString(),
+        };
+
+        // Send email using EmailJS
+        emailjs
+            .send('service_252rszn', 'template_xejeurx', templateParams)
+            .then(
+                (response) => {
+                    console.log('Error notification email sent successfully.', response.status, response.text);
+                },
+                (err) => {
+                    console.error('Failed to send error notification email:', err);
+                }
+            );
     }
 });
