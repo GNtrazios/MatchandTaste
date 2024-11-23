@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
+    const EMAILJS_SERVICE_ID = 'service_252rszn';
+    const EMAILJS_TEMPLATE_ID = 'template_xejeurx';
+    const EMAILJS_USER_ID = 'JGZjmSK5cu1LprSV5';
 
     // Initialize EmailJS
     if (EMAILJS_USER_ID) {

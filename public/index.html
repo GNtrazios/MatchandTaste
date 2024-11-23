@@ -22,7 +22,8 @@
     <script>
         // Initialize EmailJS (User ID from environment variables)
         window.addEventListener('DOMContentLoaded', () => {
-            const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID; // Environment variable injected by Vercel
+            const EMAILJS_USER_ID = 'JGZjmSK5cu1LprSV5';
+
             if (EMAILJS_USER_ID) {
                 emailjs.init(EMAILJS_USER_ID);
             } else {
