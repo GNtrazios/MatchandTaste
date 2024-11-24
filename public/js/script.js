@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let cocktails = [];
 
     // Initialize the page
-    init();
+    init(); 
 
     function init() {
         // Display special button for specific users
