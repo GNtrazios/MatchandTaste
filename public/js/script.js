@@ -19,15 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Display special button for specific users
         if (userId === 'specialUser') {
             specialButton.style.display = 'inline-block';
+            throwErrorButton.style.display = 'inline-block';
         }
-
+        
         // Initialize EmailJS
-        if (EMAILJS_USER_ID) {
-            emailjs.init(EMAILJS_USER_ID);
-        } else {
-            console.error('EmailJS User ID is not defined.');
-        }
-
+        emailjs.init(EMAILJS_USER_ID);
+        
         // Fetch cocktail data and populate question and answers
         fetch('OubiCocktails.json')
             .then(response => response.json())
@@ -121,9 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Updated logError function
-    function logError(message, error) {    
+    function logError(message, error) {
         console.error(`[Error] ${message}`, { error: error?.message || error });
-    
+
         // Log preparation of email parameters
         const templateParams = {
             error_message: message,
@@ -131,27 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
             timestamp: new Date().toISOString(),
         };
 
-        alert(`templateParams: ${JSON.stringify(templateParams, null, 2)}`);
-    
-        // Log before sending the email
-        alert("Attempting to send error notification email...");
-        emailjs
-            .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-            .then(
-                (response) => {
-                    alert(
-                        `✅ Error notification email sent successfully.\n` +
-                        `Status: ${response.status}\n` +
-                        `Response: ${response.text}`
-                    );
-                },
-                (err) => {
-                    alert(
-                        `❌ Failed to send error notification email.\n` +
-                        `Error: ${JSON.stringify(err)}`
-                    );
-                    console.error("Failed to send error notification email:", err);
-                }
-            );
-    }    
+        // Sending the email
+        if (emailjs) {
+            emailjs
+                .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(
+                    (response) => {
+                        console.log("✅ Email sent successfully", response.status, response.text);
+                    },
+                    (err) => {
+                        console.error("❌ Failed to send email:", err);
+                        console.error(emailjs);
+                    }
+                );
+        } else {
+            console.error("EmailJS is not loaded.");
+        }         
+    }
 });

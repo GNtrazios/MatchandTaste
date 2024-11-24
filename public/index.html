@@ -18,18 +18,10 @@
     <!-- End of Vercel Analytics Script -->
 
     <!-- EmailJS Script -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS (User ID from environment variables)
-        window.addEventListener('DOMContentLoaded', () => {
-            const EMAILJS_USER_ID = 'JGZjmSK5cu1LprSV5';
-
-            if (EMAILJS_USER_ID) {
-                emailjs.init(EMAILJS_USER_ID);
-            } else {
-                console.error('Error: EMAILJS_USER_ID is not defined.');
-            }
-        });
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        const EMAILJS_USER_ID = 'JGZjmSK5cu1LprSV5';
+        (function(){emailjs.init({publicKey: EMAILJS_USER_ID,});})();
     </script>
 
     <!-- Prefetch links for faster loading of next pages -->
@@ -45,9 +37,7 @@
         <button id="randomCocktailButton" class="centered-button">
             <i class="fas fa-dice"></i> Surprise me <i class="fas fa-dice"></i>
         </button>
-        <a href="ResultsOfButtons.html">
-            <button id="specialButton" class="centered-button">Show Results</button>
-        </a>
+        <button id="specialButton" class="centered-button" onclick="window.location.href='ResultsOfButtons.html';">Show Results</button>
         <button id="throwErrorButton" class="centered-button">Throw Error</button>
     </div>
 

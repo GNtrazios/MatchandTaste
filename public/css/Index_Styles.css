@@ -74,7 +74,7 @@ button:hover {
 }
 
 /* Specific button styles */
-#randomCocktailButton, #specialButton {
+#randomCocktailButton, #specialButton, #throwErrorButton {
     width: 60%;
     padding: 12px 20px;
     border-radius: 10px;
@@ -91,11 +91,11 @@ button:hover {
     vertical-align: middle;
 }
 
-#randomCocktailButton:hover, #specialButton:hover {
+#randomCocktailButton:hover, #specialButton:hover, #throwErrorButton:hover {
     background: #ef5e5e;
 }
 
-#specialButton {
+#specialButton, #throwErrorButton {
     display: none; /* Initially hidden */
 }
 
