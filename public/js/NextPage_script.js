@@ -7,10 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentQuestionIndex = parseInt([...urlParams.keys()][0], 10);
     const previousAnswer = urlParams.get(currentQuestionIndex);
 
+    let cocktailData = [];
+
     // Fetch and process cocktail data
     fetch('OubiCocktails.json')
         .then(response => response.json())
-        .then(data => handleCocktailData(data))
+        .then(data => {cocktailData = data;
+                       handleCocktailData(cocktailData);
+                })
         .catch(err => logError('Error loading cocktail data', err));
 
     // Handle cocktail data and set up the next question
@@ -21,15 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const nextQuestionKey = Object.keys(filteredData[0] || {})[currentQuestionIndex + 1];
-
-        if (nextQuestionKey && nextQuestionKey !== 'description') {
-            const possibleAnswers = [...new Set(filteredData.map(item => item[nextQuestionKey]))];
-            questionElement.textContent = nextQuestionKey;
-            populateAnswerButtons(possibleAnswers, nextQuestionKey);
-        } else {
-            // Redirect to the results page if there are no more questions
-            window.location.href = `Result.html?name=${encodeURIComponent(filteredData[0]?.name)}`;
-        }
+        const possibleAnswers = [...new Set(filteredData.map(item => item[nextQuestionKey]))];
+        questionElement.textContent = nextQuestionKey;
+        populateAnswerButtons(possibleAnswers, nextQuestionKey);
     }
 
     // Populate answer buttons dynamically
@@ -62,8 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ question, answer: selectedAnswer })
             });
+            
+            const NextfilteredData = cocktailData.filter(item => {
+                const values = Object.values(item);
+                return values[currentQuestionIndex + 1] === selectedAnswer;
+            });
 
-            window.location.href = `NextPage.html?${encodeURIComponent(currentQuestionIndex + 1)}=${encodeURIComponent(selectedAnswer)}`;
+            const nextQuestionKey = Object.keys(NextfilteredData[0] || {})[currentQuestionIndex + 2];
+            
+            if (nextQuestionKey && nextQuestionKey !== 'description') {
+                window.location.href = `NextPage.html?${encodeURIComponent(currentQuestionIndex + 1)}=${encodeURIComponent(selectedAnswer)}`;
+            } else {
+                window.location.href = `Result.html?name=${encodeURIComponent(NextfilteredData[0]?.name)}`;
+            }
+
         } catch (err) {
             logError('Error updating click counter', err);
         } finally {
