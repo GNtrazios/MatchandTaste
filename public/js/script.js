@@ -84,10 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle random cocktail button click
     randomCocktailButton.addEventListener("click", () => {
-        if (cocktails.length) {
-            const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
-            toggleLoading(true);
-            window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
+        toggleLoading(true);
+        try {
+            if (cocktails.length) {
+                const randomCocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
+                window.location.href = `Result.html?name=${encodeURIComponent(randomCocktail.name)}`;
+            }
+        } catch (err) {
+            logError('Εrror in handling random cocktail button', err);
+        } finally {
+            toggleLoading(false);
         }
     });
 
