@@ -9,7 +9,7 @@ body, html {
 
 /* Background container */
 .background {
-    background: url('../images/2.png') no-repeat center / cover;
+    background: url('../images/3.png') no-repeat center / cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
