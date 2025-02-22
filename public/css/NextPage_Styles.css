@@ -21,7 +21,7 @@ body, html {
 
 /* Content box styling */
 .box {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.72);
     border: 2px solid #c47d7d;
     padding: 20px;
     border-radius: 10px;
@@ -65,7 +65,7 @@ button {
     font-size: 16px;
     margin: 5px 0;
     width: 60%;
-    color: black;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
