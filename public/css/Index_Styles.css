@@ -33,7 +33,7 @@ body, html {
     align-items: center;
     text-align: center;
     transition: height 0.3s;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .box.auto-height {
